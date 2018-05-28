@@ -1,0 +1,48 @@
+/*-----------------------------*
+ *  include head files         *
+ *----------------------------*/
+#include".\Head\HD_cfg.h"
+
+/*-----------------------------*
+ *  Macros for constants       *
+ *----------------------------*/
+
+/*-----------------------------*
+ *  Macros for others          *
+ *----------------------------*/
+
+/*-----------------------------*
+ *  type definitions           *
+ *----------------------------*/
+
+/*-----------------------------*
+ *  structure,union and enum   *
+ *----------------------------*/
+
+/*-----------------------------*
+ *  public functions prototypes*
+ *----------------------------*/
+void	System_INIT(void);
+
+/*-----------------------------*
+ *  static functions prototypes*
+ *----------------------------*/
+static 	void 	SetSysClock(void);
+static	void 	Port_INIT(void);
+// static  void	Timer0_INIT(void);
+static 	void 	Timer1_INIT(void);
+static  void    WDT_init(void);
+
+/*-----------------------------*
+ *  public variable declaration*
+ *----------------------------*/
+uint8	bdata	SysTime;					
+sbit	bSys1S_CookTime	=	SysTime^0;      
+sbit	bSys1S_BookTime	=	SysTime^1; 
+
+/*-----------------------------*
+ *  static variable declaration*
+ *----------------------------*/
+static	uint8	m_u8SysTickCnt	=	0;
+static	uint16	m_u16SysTimeCnt	=	0;
+uint16 xdata g_u16RelayDelayCnt;
