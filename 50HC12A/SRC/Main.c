@@ -17,7 +17,7 @@
                 3. Change time settings for Buckwheat
     2018-01-12  1. Change buckwheat porridge to jam
     2018-05-14  1. Add boling water mode 
-    
+    2018-05-18  1. Add git version control
 //==============================================================================
 
                               MC86F8316S (28SOP)
