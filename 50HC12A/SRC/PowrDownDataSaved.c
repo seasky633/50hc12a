@@ -28,19 +28,19 @@ typedef unsigned int Word;
 #define EEP_STEP_ERASE 1
 #define EEP_STEP_WRITE 2
 
-#define EEP_ADDRESS_START 0x3FA0	//EEPROM ÆğÊ¼µØÖ·
-#define EEP_ADDRESS_END 0x3FFF		//EEPROM ½áÊøµØÖ·
+#define EEP_ADDRESS_START 0x3FA0	//EEPROM èµ·å§‹åœ°å€
+#define EEP_ADDRESS_END 0x3FFF		//EEPROM ç»“æŸåœ°å€
 #define	EEP_SECTOR_ADDR	0x3FC0	
 
-#define EPROM_DEFAULT_ADR EEP_ADDRESS_START	// ´Ë´¦Ö¸¶¨Ä¬ÈÏ²»Ê¹ÓÃEprom²Á³ı/Ğ´Ê±ÉèÖÃµÄµØÖ·Ö¸ÏòÓÃ»§Ö¸¶¨µÄEPROMµØÖ·
+#define EPROM_DEFAULT_ADR EEP_ADDRESS_START	// æ­¤å¤„æŒ‡å®šé»˜è®¤ä¸ä½¿ç”¨Epromæ“¦é™¤/å†™æ—¶è®¾ç½®çš„åœ°å€æŒ‡å‘ç”¨æˆ·æŒ‡å®šçš„EPROMåœ°å€
 
-#define EEPROM_W_MAX 5 //ÔÊĞíĞ´5´Î£¬²»³É¹¦ÍË³ö
+#define EEPROM_W_MAX 5 //å…è®¸å†™5æ¬¡ï¼Œä¸æˆåŠŸé€€å‡º
 #define	EEPERASE_CMD	0x02
 #define	EEPWRITE_CMD	0x03
 //================================
-unsigned char xdata *ImageDat=0x8000;	//¾µÏñÊı¾İÍ·µØÖ·£¬32byte
+unsigned char xdata *ImageDat=0x8000;	//é•œåƒæ•°æ®å¤´åœ°å€ï¼Œ32byte
 
-unsigned char rEepromCache[32];	// Êı¾İ»º´æ
+unsigned char rEepromCache[32];	// æ•°æ®ç¼“å­˜
 unsigned char  rEEP_FlagA,rEEP_FlagB;
 unsigned char rDataSavedFlag,rPowerRecoverCnt,r1msTick;
 
@@ -51,7 +51,7 @@ unsigned char rDataSavedFlag,rPowerRecoverCnt,r1msTick;
  void FlashSector_Operate(unsigned int p_EEPADDR, unsigned char  p_CMD );
 void main(void)
 {  
-	rDataSavedFlag=0xAA;//ÉÏµç½«±êÖ¾ÖÃÎ»,·ÀÖ¹ÉÏµçµçÑ¹ÎÈ¶¨Ç°¶¨EEPROM²Ù×÷
+	rDataSavedFlag=0xAA;//ä¸Šç”µå°†æ ‡å¿—ç½®ä½,é˜²æ­¢ä¸Šç”µç”µå‹ç¨³å®šå‰å®šEEPROMæ“ä½œ
 	LVICR=0x1B;//setting LVI detet <4.0V
 	EpromInit();
 	while(1)
@@ -59,11 +59,11 @@ void main(void)
 		WDTCR =0xE2;	// clear WDT
 		if(LVICR&0x20)//power down to <4.0V
 			{
-			rEEP_FlagA=0x5A;//ÖÃA±êÖ¾,·ÀÖ¹Òì³£µ÷ÓÃ
+			rEEP_FlagA=0x5A;//ç½®Aæ ‡å¿—,é˜²æ­¢å¼‚å¸¸è°ƒç”¨
 			rPowerRecoverCnt=0;			
 			if(rDataSavedFlag==0)
 				{
-				EEPROM_Process();//´Ë´¦²Î¿¼Ö®Ç°Ìá¹©EEPROM²Ù×÷×¢ÒâÊÂÏî
+				EEPROM_Process();//æ­¤å¤„å‚è€ƒä¹‹å‰æä¾›EEPROMæ“ä½œæ³¨æ„äº‹é¡¹
 				rDataSavedFlag=0xAA;
 				}
 			LVICR=0x1B;//clear flag and detect again
@@ -73,7 +73,7 @@ void main(void)
 			if(r1msTick==0xFF)
 				{
 				r1msTick=0;
-				if(rPowerRecoverCnt>20)//20 ms debounce ,ÓÃ»§¿É×ÔĞĞĞŞ¸ÄºÏÊÊµÄÊ±¼ä
+				if(rPowerRecoverCnt>20)//20 ms debounce ,ç”¨æˆ·å¯è‡ªè¡Œä¿®æ”¹åˆé€‚çš„æ—¶é—´
 					rDataSavedFlag=0;//power recovered morethan 20ms,clear "saved "flag
 				else rPowerRecoverCnt++;
 				}
@@ -85,19 +85,19 @@ void main(void)
 
 
 //================================
-//Ö÷º¯Êıµ÷ÓÃ
-// Ê¾·¶Ó¦ÓÃ£¬½ö¹©²Î¿¼
+//ä¸»å‡½æ•°è°ƒç”¨
+// ç¤ºèŒƒåº”ç”¨ï¼Œä»…ä¾›å‚è€ƒ
 //================================
 unsigned char EEPROM_Process(void)
 {
 unsigned char code *p_EepRom;
 unsigned char xdata *p_Buffer=0x8000;
 unsigned char i;
-ClosedDisplay();//¹Ø±ÕÏÔÊ¾,×î´ó¿ÉÄÜÊ¡µç,±£Ö¤×ã¹»Ê±¼äÍê³ÉEEPROM²Ù×÷
-rEEP_FlagB=0xA5;//ÖÃB±êÖ¾,·ÀÖ¹Òì³£µ÷ÓÃ
-DI();//¹Ø±ÕÖĞ¶Ï
-WDTCR=0;//¹Ø±Õ¿´ÃÅ¹·;
-LVRCR=0x01;//¹Ø±ÕµÍµçÑ¹¸´Î»,·ÀÖ¹ÖĞ¶ÏEEPROM²Ù×÷
+ClosedDisplay();//å…³é—­æ˜¾ç¤º,æœ€å¤§å¯èƒ½çœç”µ,ä¿è¯è¶³å¤Ÿæ—¶é—´å®ŒæˆEEPROMæ“ä½œ
+rEEP_FlagB=0xA5;//ç½®Bæ ‡å¿—,é˜²æ­¢å¼‚å¸¸è°ƒç”¨
+DI();//å…³é—­ä¸­æ–­
+WDTCR=0;//å…³é—­çœ‹é—¨ç‹—;
+LVRCR=0x01;//å…³é—­ä½ç”µå‹å¤ä½,é˜²æ­¢ä¸­æ–­EEPROMæ“ä½œ
 for(i=0;i<EEPROMPAGESIZE;i++)
 	{
 	*p_Buffer=rEepromCache[i];
@@ -117,8 +117,8 @@ return 1;
 
 
 //---------------------------------------------------
-//³ÌĞò¸´Î»Ö¸Áî
-// µ±¼ì²âµ½³ÌĞòÒì³£¿ÉÒÔÊ¹ÓÃ¸´Î»
+//ç¨‹åºå¤ä½æŒ‡ä»¤
+// å½“æ£€æµ‹åˆ°ç¨‹åºå¼‚å¸¸å¯ä»¥ä½¿ç”¨å¤ä½
 //---------------------------------------------------
 void Program_Reset(void)
  {
@@ -128,17 +128,17 @@ void Program_Reset(void)
 
 
 //---------------------------------------------------
-//Õı³£²»µ÷ÓÃEEPROM ²Á³ı/ Ğ´ ³ÌĞòÊ±³õÊ¼»¯¼Ä´æÆ÷
+//æ­£å¸¸ä¸è°ƒç”¨EEPROM æ“¦é™¤/ å†™ ç¨‹åºæ—¶åˆå§‹åŒ–å¯„å­˜å™¨
 //---------------------------------------------------
 void EpromInit(void)
 {
 	//------------------------------------------------------------------------------------------------------------
-	FIDR=0;		// Ö»ÓĞµ±FIDR =0xa5 ²¢ÇÒFMCR= 02 »òÕßFMCR=03 Ê±Ìõ¼şÍ¬Ê±³ÉÁ¢²Å¿ÉÒÔ²Á³ı»òÕßĞ´EEPROM
-				//ËùÒÔÕı³£²»²Á³ıĞ´µÄÇé¿öÏÂFIDRÉèÖÃÎª0±ÜÃâ³ÌĞòÅÜ·ÉÇé¿öÏÂ³öÒì³£
+	FIDR=0;		// åªæœ‰å½“FIDR =0xa5 å¹¶ä¸”FMCR= 02 æˆ–è€…FMCR=03 æ—¶æ¡ä»¶åŒæ—¶æˆç«‹æ‰å¯ä»¥æ“¦é™¤æˆ–è€…å†™EEPROM
+				//æ‰€ä»¥æ­£å¸¸ä¸æ“¦é™¤å†™çš„æƒ…å†µä¸‹FIDRè®¾ç½®ä¸º0é¿å…ç¨‹åºè·‘é£æƒ…å†µä¸‹å‡ºå¼‚å¸¸
 	//------------------------------------------------------------------------------------------------------------
-	//Õı³£²»²Á³ı/Ğ´ EEPROM Ê±¼Ä´æÆ÷µØÖ·Ğ´ÈëÒ»ÌØ¶¨µØÖ·£¬
-	// µØÖ·ÎªEEPROMµØÖ·»òÕßÆäËü·Ç³ÌĞò´úÂëÕ¼ÓÃµØÖ·(Èç¹û³ÌĞò¿Õ¼ä¹»£¬¿ÉÒÔÊ¹ÓÃ_at_ Ö¸Áî¶îÍâÖ¸¶¨Ò»¸öµØÖ·)
-	// ÕâÑù×ö±£Ö¤Òì³£Çé¿öÏÂ½øÈë²Á/Ğ´ÃüÁîÊ±²»»á²Á³ı/ĞŞ¸ÄROM µÄ³ÌĞòÖ¸Áî¶Î£¬ÒÔÈ·±£³ÌĞòÕı³£¹¤×÷
+	//æ­£å¸¸ä¸æ“¦é™¤/å†™ EEPROM æ—¶å¯„å­˜å™¨åœ°å€å†™å…¥ä¸€ç‰¹å®šåœ°å€ï¼Œ
+	// åœ°å€ä¸ºEEPROMåœ°å€æˆ–è€…å…¶å®ƒéç¨‹åºä»£ç å ç”¨åœ°å€(å¦‚æœç¨‹åºç©ºé—´å¤Ÿï¼Œå¯ä»¥ä½¿ç”¨_at_ æŒ‡ä»¤é¢å¤–æŒ‡å®šä¸€ä¸ªåœ°å€)
+	// è¿™æ ·åšä¿è¯å¼‚å¸¸æƒ…å†µä¸‹è¿›å…¥æ“¦/å†™å‘½ä»¤æ—¶ä¸ä¼šæ“¦é™¤/ä¿®æ”¹ROM çš„ç¨‹åºæŒ‡ä»¤æ®µï¼Œä»¥ç¡®ä¿ç¨‹åºæ­£å¸¸å·¥ä½œ
 	FSADRH = 0;
 	FSADRM =(unsigned char)(EPROM_DEFAULT_ADR>>8);	
 	FSADRL = (unsigned char)(EPROM_DEFAULT_ADR);	

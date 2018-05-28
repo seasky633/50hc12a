@@ -6,9 +6,9 @@
 /*-----------------------------*
  *  Macros for constants       *
  *----------------------------*/
-//#define		AD_TEMP_SIZE		3		//ÁÙÊ±Êı¾İ»º³åµÄ´óĞ¡
-#define     AD_CH_NUM			2		//Í¨µÀ¸öÊı
-#define     AD_STAT_SIZE		8		//Ã¿¸öÍ¨µÀ¶ÑÕ»µÄ´óĞ¡
+//#define		AD_TEMP_SIZE		3		//ä¸´æ—¶æ•°æ®ç¼“å†²çš„å¤§å°
+#define     AD_CH_NUM			2		//é€šé“ä¸ªæ•°
+#define     AD_STAT_SIZE		8		//æ¯ä¸ªé€šé“å †æ ˆçš„å¤§å°
 
 /*-----------------------------*
  *  Macros for others          *
@@ -45,14 +45,14 @@ static	uint8	Dichotomy_Search(uint8 u8Array[],uint8 n,uint8 u8Key);
 /*-----------------------------*
  *  public variable declaration*
  *----------------------------*/
-uint8	idata 	u8ADBuf[AD_CH_NUM][AD_STAT_SIZE];	//ADC»º³åÆ÷
-//uint16	idata	u16AdTempBuf[AD_TEMP_SIZE];		    //ÁÙÊ±Êı¾İ»º³å
-//uint8	u8CurCH		=	0;							//µ±Ç°Í¨µÀ
-//uint8	u8CurCHID;									//µ±Ç°Í¨µÀ¶ÔÓ¦µÄID
-//uint8	u8ADCnt		=	0;							//Á¬Ğø×ª»»µÄ´ÎÊı
-uint8	idata   u8ChgCnt =	0;						//×ª»»´ÎÊı
-uint8	idata	g_u8ADResult[AD_CH_NUM];			//AD×ª»»×îÖÕ½á¹û(ÎÂ¶È)
-uint8	idata	g_u8ADValue[AD_CH_NUM];			//AD×ª»»×îÖÕ½á¹û(AD)
+uint8	idata 	u8ADBuf[AD_CH_NUM][AD_STAT_SIZE];	//ADCç¼“å†²å™¨
+//uint16	idata	u16AdTempBuf[AD_TEMP_SIZE];		    //ä¸´æ—¶æ•°æ®ç¼“å†²
+//uint8	u8CurCH		=	0;							//å½“å‰é€šé“
+//uint8	u8CurCHID;									//å½“å‰é€šé“å¯¹åº”çš„ID
+//uint8	u8ADCnt		=	0;							//è¿ç»­è½¬æ¢çš„æ¬¡æ•°
+uint8	idata   u8ChgCnt =	0;						//è½¬æ¢æ¬¡æ•°
+uint8	idata	g_u8ADResult[AD_CH_NUM];			//ADè½¬æ¢æœ€ç»ˆç»“æœ(æ¸©åº¦)
+uint8	idata	g_u8ADValue[AD_CH_NUM];			//ADè½¬æ¢æœ€ç»ˆç»“æœ(AD)
 //uint8   code CHNO2ID[] = {2,3};  
 
 /*-----------------------------*
@@ -73,13 +73,13 @@ uint8	idata	g_u8ADValue[AD_CH_NUM];			//AD×ª»»×îÖÕ½á¹û(AD)
 //    uint16	u16AdTemp;
 //	
 //	u16AdTemp =	(ADCDRH << 8) | ADCDRL;		// read ADC
-//    u16AdTempBuf[u8ADCnt++] = u16AdTemp;	//½«×ª»»½á¹û±£´æµ½ÁÙÊ±»º³åÇøÖĞ
+//    u16AdTempBuf[u8ADCnt++] = u16AdTemp;	//å°†è½¬æ¢ç»“æœä¿å­˜åˆ°ä¸´æ—¶ç¼“å†²åŒºä¸­
 //	
-//    if(u8ADCnt>=AD_TEMP_SIZE)           //ÊÇ·ñÁ¬Ğø²É¼¯ÁË(AD_TEMP_SIZE)´Î
+//    if(u8ADCnt>=AD_TEMP_SIZE)           //æ˜¯å¦è¿ç»­é‡‡é›†äº†(AD_TEMP_SIZE)æ¬¡
 //	{					
 //		u8ADCnt  =	0;
-//		bADOK	 =	1;		            //µ±ÁÙÊ±»º³åÇøÒÑ´æÂúÊı¾İÊ±£¬ÖÃADOKÎ»Îª1 
-//		ADCCRL   =  0;    				//Í£Ö¹×ª»»
+//		bADOK	 =	1;		            //å½“ä¸´æ—¶ç¼“å†²åŒºå·²å­˜æ»¡æ•°æ®æ—¶ï¼Œç½®ADOKä½ä¸º1 
+//		ADCCRL   =  0;    				//åœæ­¢è½¬æ¢
 //	}
 //	else
 //	{
@@ -107,9 +107,9 @@ void	ADC_INIT(void)
 	ADWRCR2 = 0x00; 	// Wake-up R selection
 	ADWRCR3 = 0x00; 	// Wake-up R selection
 	IE3 &= 0xFE;    	// disable ADC interrupt
-//	u8CurCH	= 0;        //u8CurCH : µ±Ç°Í¨µÀĞòºÅ
-//	u8CurCHID =	CHNO2ID[u8CurCH];	//u8CurCHID: µ±Ç°Í¨µÀID
-//	ADC_Start(u8CurCHID);			//Ñ¡ÔñÍ¨µÀ&¿ªÊ¼×ª»»
+//	u8CurCH	= 0;        //u8CurCH : å½“å‰é€šé“åºå·
+//	u8CurCHID =	CHNO2ID[u8CurCH];	//u8CurCHID: å½“å‰é€šé“ID
+//	ADC_Start(u8CurCHID);			//é€‰æ‹©é€šé“&å¼€å§‹è½¬æ¢
 }
 
 /*-----------------------------------------------------------------------------*
@@ -130,11 +130,11 @@ void	ADC_INIT(void)
 
 /*-----------------------------------------------------------------------------*
  *  Function Description:                                                      *
- *      ²éÑ¯AD×ª»»×îÖÕ½á¹û.                                                    *
+ *      æŸ¥è¯¢ADè½¬æ¢æœ€ç»ˆç»“æœ.                                                    *
  *  Parameters:                                                                *
- *      ×ª»»Í¨µÀ                                                               *
+ *      è½¬æ¢é€šé“                                                               *
  *  Return                                                                     *
- *      AD×ª»»×îÖÕ½á¹û(ÎÂ¶È)                                                   *
+ *      ADè½¬æ¢æœ€ç»ˆç»“æœ(æ¸©åº¦)                                                   *
  *----------------------------------------------------------------------------*/
 uint8	ADCGetData(uint8 u8CH)
 {
@@ -143,11 +143,11 @@ uint8	ADCGetData(uint8 u8CH)
 
 /*-----------------------------------------------------------------------------*
  *  Function Description:                                                      *
- *      ²éÑ¯AD×ª»»×îÖÕ½á¹û.                                                    *
+ *      æŸ¥è¯¢ADè½¬æ¢æœ€ç»ˆç»“æœ.                                                    *
  *  Parameters:                                                                *
- *      ×ª»»Í¨µÀ                                                               *
+ *      è½¬æ¢é€šé“                                                               *
  *  Return                                                                     *
- *      AD×ª»»×îÖÕ½á¹û(AD)                                               	   *
+ *      ADè½¬æ¢æœ€ç»ˆç»“æœ(AD)                                               	   *
  *----------------------------------------------------------------------------*/
 uint8   ADCGetVal(uint8	u8CH)
 {
@@ -156,11 +156,11 @@ uint8   ADCGetVal(uint8	u8CH)
 
 /*-----------------------------------------------------------------------------*
  *  Function Description:                                                      *
- *      ADÖµ×ª»»³ÉÎÂ¶ÈÖµ²¢´¦Àí.                                                *
+ *      ADå€¼è½¬æ¢æˆæ¸©åº¦å€¼å¹¶å¤„ç†.                                                *
  *  Parameters:                                                                *
- *      ADÖµ,×ª»»Í¨µÀ                                                          *
+ *      ADå€¼,è½¬æ¢é€šé“                                                          *
  *  Return                                                                     *
- *      ÎÂ¶ÈÖµ                                                                 *
+ *      æ¸©åº¦å€¼                                                                 *
  *----------------------------------------------------------------------------*/
 static	uint8	GetDegree(uint8 adData,uint8 u8CH)
 {
@@ -172,10 +172,10 @@ static	uint8	GetDegree(uint8 adData,uint8 u8CH)
 	{
 	    case    AD_CH_BOT:
         case	AD_CH_TOP:
-			//ÅĞ¶ÏADÊÇ·ñÔÚ²éÕÒ·¶Î§ÄÚ(0¶Èµ½190¶È)
+			//åˆ¤æ–­ADæ˜¯å¦åœ¨æŸ¥æ‰¾èŒƒå›´å†…(0åº¦åˆ°190åº¦)
 		    if((adData>=7)&&(adData<241))
 			{
-				//¶Ô·Ö·¨²éÕÒÏàÓ¦ÎÂ¶È
+				//å¯¹åˆ†æ³•æŸ¥æ‰¾ç›¸åº”æ¸©åº¦
 				i =	Dichotomy_Search((uint8*)TempTable3950_50K,190,adData);
 			}
 			else
@@ -192,13 +192,13 @@ static	uint8	GetDegree(uint8 adData,uint8 u8CH)
 	return	i;
 }
 
-/*                     ÏÂÃæ³ÌĞò¿ÉÒÆÖ²                    */
+/*                     ä¸‹é¢ç¨‹åºå¯ç§»æ¤                    */
 
 /*-----------------------------------------------------------------------------*
  *  Function Description:                                                      *
- *      Ã°ÅİÅÅĞò.                                                              *
+ *      å†’æ³¡æ’åº.                                                              *
  *  Parameters:                                                                *
- *      pDatĞèÒªÅÅĞòµÄÊı¾İÖ¸Õë£¬u8SizeĞèÒªÅÅĞòµÄ¸öÊı.                          *
+ *      pDatéœ€è¦æ’åºçš„æ•°æ®æŒ‡é’ˆï¼Œu8Sizeéœ€è¦æ’åºçš„ä¸ªæ•°.                          *
  *  Return                                                                     *
  *      None                                                                   *
  *----------------------------------------------------------------------------*/
@@ -245,11 +245,11 @@ static	uint8	GetDegree(uint8 adData,uint8 u8CH)
 
 /*-----------------------------------------------------------------------------* 				                         
  *  Function Description:                                                                    
- *  	ÓĞĞòÊı×é¶ş·Ö²éÕÒËã·¨
+ *  	æœ‰åºæ•°ç»„äºŒåˆ†æŸ¥æ‰¾ç®—æ³•
  *	Parameters: 
- * 		u8Array[]:±»²éÕÒÊı×é,  	n:±»²éÕÒÊı×éÔªËØ¸öÊı,	u8Key:±»²éÕÒµÄ¹Ø¼üÖµ
+ * 		u8Array[]:è¢«æŸ¥æ‰¾æ•°ç»„,  	n:è¢«æŸ¥æ‰¾æ•°ç»„å…ƒç´ ä¸ªæ•°,	u8Key:è¢«æŸ¥æ‰¾çš„å…³é”®å€¼
  * 	Return:   
- *		¶ÔÓ¦µÄÎÂ¶ÈÖµ
+ *		å¯¹åº”çš„æ¸©åº¦å€¼
  *----------------------------------------------------------------------------*/
 static	uint8	Dichotomy_Search(uint8 u8Array[],uint8 n,uint8 u8Key)    
 {    
@@ -263,8 +263,8 @@ static	uint8	Dichotomy_Search(uint8 u8Array[],uint8 n,uint8 u8Key)
 		   if(u8Mid==u8High||u8Key < u8Array[u8Mid+1])
 		    return(u8Mid);    
 		}
-		/*key>array[mid] ±íÃ÷ÒªÇó²éÕÒµÄÖµÔÚ[mid+1,high]*/   
-		/*·ñÔò,ÔÚ[low,mid-1]*/   
+		/*key>array[mid] è¡¨æ˜è¦æ±‚æŸ¥æ‰¾çš„å€¼åœ¨[mid+1,high]*/   
+		/*å¦åˆ™,åœ¨[low,mid-1]*/   
 		if(u8Low==u8High)break;
 		if(u8Key > u8Array[u8Mid])    
 		    u8Low = u8Mid + 1;    
@@ -276,7 +276,7 @@ static	uint8	Dichotomy_Search(uint8 u8Array[],uint8 n,uint8 u8Key)
 
 /*-----------------------------------------------------------------------------*
  *  Function Description:                                                      *
- *      ADC²É¼¯´¦Àí	                                                           *
+ *      ADCé‡‡é›†å¤„ç†	                                                           *
  *  Parameters:                                                                *
  *      None                                                                   *
  *  Return                                                                     *
@@ -290,12 +290,12 @@ void	ADCProc(void)
 	u8ADBuf[AD_CH_BOT][u8ChgCnt] = AD_BottomTemperature;
     u8ADBuf[AD_CH_TOP][u8ChgCnt] = AD_TopTemperature;
 
-    //»¬¶¯Æ½¾ùÖµÂË²¨
+    //æ»‘åŠ¨å¹³å‡å€¼æ»¤æ³¢
 	u8ChgCnt++;
 	if(u8ChgCnt==AD_STAT_SIZE)
 	{
 		u8ChgCnt = u8ChgCnt-1; 
-		//µÃµ½ADµÄ×îÖÕÖµ
+		//å¾—åˆ°ADçš„æœ€ç»ˆå€¼
 		for(j=0;j<AD_CH_NUM;j++)
 		{
 			u16Tmp  =	0;
@@ -304,8 +304,8 @@ void	ADCProc(void)
 				u16Tmp	+=	(uint16)u8ADBuf[j][i];
 			}
 			u16Tmp = u16Tmp/AD_STAT_SIZE;
-			g_u8ADValue[j] = (uint8)u16Tmp;		    //(ADÖµ)
-			g_u8ADResult[j]	= GetDegree((uint8)u16Tmp,j);	//(ÎÂ¶ÈÖµ)
+			g_u8ADValue[j] = (uint8)u16Tmp;		    //(ADå€¼)
+			g_u8ADResult[j]	= GetDegree((uint8)u16Tmp,j);	//(æ¸©åº¦å€¼)
 		}
 						
 		for(j=0;j<AD_CH_NUM;j++)

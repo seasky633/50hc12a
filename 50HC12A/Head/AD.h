@@ -8,8 +8,8 @@
 /*-----------------------------*
  *  Macros for constants       *
  *----------------------------*/
-//PIN25   AN2/P02   AD-RT-BOT	µ×²¿ÎÂ¶È
-//PIN24   AN3/P03   AD-RT-TOP   ¶¥²¿ÎÂ¶È
+//PIN25   AN2/P02   AD-RT-BOT	åº•éƒ¨æ¸©åº¦
+//PIN24   AN3/P03   AD-RT-TOP   é¡¶éƒ¨æ¸©åº¦
 
 #define	 AD_CH_BOT	0
 #define  AD_CH_TOP	1

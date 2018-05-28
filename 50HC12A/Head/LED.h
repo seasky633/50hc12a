@@ -102,7 +102,7 @@ extern	uint8 u8Com_Mode;
 extern  uint8 xdata m_u8SelfChkStep;
 extern  uint8 xdata LEDBuf[];
 
-extern  uint8 bdata	VBuf[];   	//LEDÏÔ´æÓ³Éä
+extern  uint8 bdata	VBuf[];   	//LEDæ˜¾å­˜æ˜ å°„
 extern  bit bLED_Dot1;          //":"up
 extern  bit bLED_Dot2;          //":"down
 

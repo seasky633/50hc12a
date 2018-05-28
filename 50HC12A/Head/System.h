@@ -29,17 +29,17 @@
 #define		VAL_KEY_CANCEL		0x80
 #define     VAL_KEY_TEST        0x24
 
-//ÏµÍ³×´Ì¬
-#define		SYS_ID_RESET	0  		//ÏµÍ³¸´Î»µÄID
-#define		SYS_ID_READY	1		//ÏµÍ³´ı»úµÄID
-#define     SYS_ID_SETUP    2       //ÏµÍ³¹¦ÄÜÉèÖÃµÄID
-#define	    SYS_ID_RUN		3		//ÏµÍ³¿ª»úÔËĞĞµÄID
-#define	    SYS_ID_WARM		4		//ÏµÍ³±£ÎÂµÄID
-#define     SYS_ID_POWRDOWN 5       //ÏµÍ³µôµçµÄID
-#define     SYS_ID_ERROR    6       //ÏµÍ³±¨¾¯µÄID
-#define		SYS_ID_CHECK	7		//ÏµÍ³×Ô¼ìµÄID
+//ç³»ç»ŸçŠ¶æ€
+#define		SYS_ID_RESET	0  		//ç³»ç»Ÿå¤ä½çš„ID
+#define		SYS_ID_READY	1		//ç³»ç»Ÿå¾…æœºçš„ID
+#define     SYS_ID_SETUP    2       //ç³»ç»ŸåŠŸèƒ½è®¾ç½®çš„ID
+#define	    SYS_ID_RUN		3		//ç³»ç»Ÿå¼€æœºè¿è¡Œçš„ID
+#define	    SYS_ID_WARM		4		//ç³»ç»Ÿä¿æ¸©çš„ID
+#define     SYS_ID_POWRDOWN 5       //ç³»ç»Ÿæ‰ç”µçš„ID
+#define     SYS_ID_ERROR    6       //ç³»ç»ŸæŠ¥è­¦çš„ID
+#define		SYS_ID_CHECK	7		//ç³»ç»Ÿè‡ªæ£€çš„ID
 
-//¹¦ÄÜID
+//åŠŸèƒ½ID
 #define     FUNC_ID_SOUP        1
 #define     FUNC_ID_BAKE        2
 #define     FUNC_ID_STEW        3

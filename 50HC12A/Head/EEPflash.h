@@ -8,13 +8,13 @@
 #define EEP_STEP_ERASE 1
 #define EEP_STEP_WRITE 2
 
-#define EEP_ADDRESS_START 0x3FA0	//EEPROM ��ʼ��ַ
-#define EEP_ADDRESS_END 0x3FFF		//EEPROM ������ַ
+#define EEP_ADDRESS_START 0x3FA0	//EEPROM 起始地址
+#define EEP_ADDRESS_END 0x3FFF		//EEPROM 结束地址
 #define	EEP_SECTOR_ADDR	0x3FC0	
 
-#define EPROM_DEFAULT_ADR EEP_ADDRESS_START	// �˴�ָ��Ĭ�ϲ�ʹ��Eprom����/дʱ���õĵ�ַָ���û�ָ����EPROM��ַ
+#define EPROM_DEFAULT_ADR EEP_ADDRESS_START	// 此处指定默认不使用Eprom擦除/写时设置的地址指向用户指定的EPROM地址
 
-#define EEPROM_W_MAX 5 //����д5�Σ����ɹ��˳�
+#define EEPROM_W_MAX 5 //允许写5次，不成功退出
 #define	EEPERASE_CMD	0x02
 #define	EEPWRITE_CMD	0x03
 

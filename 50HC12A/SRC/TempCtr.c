@@ -37,12 +37,12 @@ void	HeatProc(void);
 /*-----------------------------*
  *  public variable declaration*
  *----------------------------*/
-uint8	g_u8HiTemp;				//нб╤хиооч
-uint8	g_u8LoTemp;				//нб╤хобоч
+uint8	g_u8HiTemp;				//Ф╦╘Е╨╕Д╦┼И≥░
+uint8	g_u8LoTemp;				//Ф╦╘Е╨╕Д╦▀И≥░
 uint8	g_u8OnTime_Set;
 uint8	g_u8OffTime_Set;
 uint8	g_u8PwrCnt;
-uint16	g_u16RelayTime;	        //╪л╣ГфВ╤╞вВй╠╪Д
+uint16	g_u16RelayTime;	        //Г╩╖Г■╣Е≥╗Е┼╗Д╫°Ф≈╤И≈╢
 
 /*-----------------------------*
  *  static variable declaration*
@@ -52,7 +52,7 @@ static	uint8	u8OffTime;
 
 /*-----------------------------------------------------------------------------*
  *  Function Description:                                                      *
- *      нб╤хн╛ЁжЁлпР                                   					       *
+ *      Ф╦╘Е╨╕Г╩╢Ф▄│Г╗▀Е╨▐                                   					       *
  *  Parameters:                                                                *
  *      None                                                                   *
  *  Return                                                                     *
@@ -72,31 +72,31 @@ void	KeepTempProc(void)
 	{ 
 		if(bTempReach)
 		{	
-			//нб╤хря╬╜╣╫╢О,тР╪Л╡ИLowнб╤х
+			//Ф╦╘Е╨╕Е╥╡Г╩▐Е┬╟Х╬╬,Е┬≥Фё─Ф÷╔LowФ╦╘Е╨╕
 			if(u8BotDegree>=g_u8LoTemp)
 			{
-				//нб╤х╩╧тзд©╠Й╥╤н╖дз
+				//Ф╦╘Е╨╕Х©≤Е°╗Г⌡╝Ф═┤Х▄┐Е⌡╢Е├┘
 				u8OnTime	=	0;
 				return;
 	  		}
 			else
 			{
-				//ря╬╜╣мсзLowTemp
+				//Е╥╡Г╩▐Д╫▌Д╨▌LowTemp
 				bTempReach	=	0;
 			}	
 		}
 
-		//нб╤х╩╧ц╩╢О╣╫
+		//Ф╦╘Е╨╕Х©≤Ф╡║Х╬╬Е┬╟
 		if(u8BotDegree>=g_u8HiTemp)
 		{
-			//нб╤х╢Ссзиоочнб╤х
-			bTempReach	=	1;			//жцнб╤хря╬╜╢О╣╫иоочв╢л╛
+			//Ф╦╘Е╨╕Е╓╖Д╨▌Д╦┼И≥░Ф╦╘Е╨╕
+			bTempReach	=	1;			//Г╫╝Ф╦╘Е╨╕Е╥╡Г╩▐Х╬╬Е┬╟Д╦┼И≥░Г┼╤Ф─│
 			u8OnTime	=	0;
  		}
 		else
 		{
-			//нб╤ххтх╩╣мсзиоочнб╤х
-			//иХжц╪Д╦Т╪схх╡нйЩ
+			//Ф╦╘Е╨╕Д╩█Г└╤Д╫▌Д╨▌Д╦┼И≥░Ф╦╘Е╨╕
+			//Х╝╬Г╫╝И≈╢И ■Е┼═Г┐╜Е▐┌Ф∙╟
 			u8OnTime	=	g_u8OnTime_Set;
 			u8OffTime	=	g_u8OffTime_Set;
    		}
@@ -105,7 +105,7 @@ void	KeepTempProc(void)
 
 /*-----------------------------------------------------------------------------*
  *  Function Description:                                                      *
- *      ╪схх©ьжфЁлпР                                  				           *
+ *      Е┼═Г┐╜Ф▌╖Е┬╤Г╗▀Е╨▐                                  				           *
  *  Parameters:                                                                *
  *      None                                                                   *
  *  Return                                                                     *
@@ -113,13 +113,13 @@ void	KeepTempProc(void)
  *-----------------------------------------------------------------------------*/
 void	HeatProc(void)
 {
-	if(bPwrDown==1)                 //╣Т╣Г╧ь╠у╪схх
+	if(bPwrDown==1)                 //Ф▌┴Г■╣Е┘ЁИ≈╜Е┼═Г┐╜
 	{
         bHeatState = 0;
 	}
 	else
 	{
-		if(u8OnTime==0) 			//нч╧╕бййДЁЖ
+		if(u8OnTime==0) 			//Ф≈═Е┼÷Г▌┤Х╬⌠Е┤╨
 		{
 	//		IO_HEAT_BOT	=	0;
 	//		P1 &= ~(1<<0);
@@ -128,7 +128,7 @@ void	HeatProc(void)
 		}
 		else
 		{
-			if(u8OnTime==0xf0) 		//а╛пЬ╪схх
+			if(u8OnTime==0xf0) 		//Х©·Г╩╜Е┼═Г┐╜
 			{
 	//			IO_HEAT_BOT	=	1;
 	//			P1	|= (1<<0);
@@ -147,8 +147,8 @@ void	HeatProc(void)
 						//HeatProc_OnState
 						if(g_u8PwrCnt>=u8OnTime)
 						{
-							bHeatState	=	0;		//иХжц╪Д╦Т╪сххв╢л╛н╙╤о©╙в╢л╛
-							g_u8PwrCnt	=	0;		//╪Д╦Т╪схх╪фй╠фВгЕаЦ
+							bHeatState	=	0;		//Х╝╬Г╫╝И≈╢И ■Е┼═Г┐╜Г┼╤Ф─│Д╦╨Ф√╜Е╪─Г┼╤Ф─│
+							g_u8PwrCnt	=	0;		//И≈╢И ■Е┼═Г┐╜Х╝║Ф≈╤Е≥╗Ф╦┘И⌡╤
 	//						IO_HEAT_BOT	=	0;	
 	//						P1 &= ~(1<<0);
 						}
@@ -165,8 +165,8 @@ void	HeatProc(void)
 						//HeatProc_OffState
 						if(g_u8PwrCnt>=u8OffTime)
 						{
-							bHeatState	=	1;		//иХжц╪Д╦Т╪сххв╢л╛н╙╢Р©╙в╢л╛
-							g_u8PwrCnt	=	0;		//╪Д╦Т╪схх╪фй╠фВгЕаЦ
+							bHeatState	=	1;		//Х╝╬Г╫╝И≈╢И ■Е┼═Г┐╜Г┼╤Ф─│Д╦╨Ф┴⌠Е╪─Г┼╤Ф─│
+							g_u8PwrCnt	=	0;		//И≈╢И ■Е┼═Г┐╜Х╝║Ф≈╤Е≥╗Ф╦┘И⌡╤
 	//						IO_HEAT_BOT	=	1;
 	//						P1	|= (1<<0);
 							g_u16RelayTime++;

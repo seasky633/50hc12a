@@ -63,7 +63,7 @@ static	unsigned int HEX8toBCD(unsigned char hex_data);
 //VBuf[5]       3B		3C		3DP		3D		3E		3G		3A		3F
 //VBuf[6]       4B		4C		/		4D		4E		4G		4A		4F
 
-uint8 bdata	VBuf[7];   	//LEDÏÔ´æÓ³Éä
+uint8 bdata	VBuf[7];   	//LEDæ˜¾å­˜æ˜ å°„
 sbit bLED_Dot1      = VBuf[4]^2;//":"up
 sbit bLED_Dot2      = VBuf[5]^2;//":"down
 
@@ -107,7 +107,7 @@ uint8 code LED_TAB[] =
 
 /*-----------------------------------------------------------------------------*
  *  Function Description:                                                      *
- *      HEX×ªBCD                                                               * 
+ *      HEXè½¬BCD                                                               * 
  *  Parameters:                                                                *
  *      hex_data(<0xff,>0)                                                     *
  *  Return                                                                     *
@@ -126,7 +126,7 @@ static	unsigned int HEX8toBCD(unsigned char hex_data)
 
 /*-----------------------------------------------------------------------------*
  *  Function Description:                                                      *
- *      ALL LEDÏÔÊ¾Ä£Ê½                                                        *
+ *      ALL LEDæ˜¾ç¤ºæ¨¡å¼                                                        *
  *  Parameters:                                                                *
  *      None                                                                   *
  *  Return                                                                     *
@@ -151,7 +151,7 @@ void	LEDDispAll(uint8 mode)
 
 /*-----------------------------------------------------------------------------*
  *  Function Description:                                                      *
- *      ÏÔÊ¾Êı×Ö¸ßÁ½Î»D4-D3                                                    *
+ *      æ˜¾ç¤ºæ•°å­—é«˜ä¸¤ä½D4-D3                                                    *
  *  Parameters:                                                                *
  *      hdigit                                                                 *
  *  Return                                                                     *
@@ -161,19 +161,19 @@ void	LEDDispNum_HI(uint8	hdigit)
 {
 	uint8	i;
 
-	VBuf[6]	 =	0x00;						//ÇåLED»º³åÇø	
+	VBuf[6]	 =	0x00;						//æ¸…LEDç¼“å†²åŒº	
 	VBuf[5]	&=	0x04;
 
-	i	=	hdigit & 0x0f;	  				//ÏÔÊ¾µÍÎ»D3
+	i	=	hdigit & 0x0f;	  				//æ˜¾ç¤ºä½ä½D3
 	VBuf[5]	|=	LED_TAB[i];  				
    	
-	i   =	(hdigit>>4) & 0x0f;             //ÏÔÊ¾¸ßÎ»D4
+	i   =	(hdigit>>4) & 0x0f;             //æ˜¾ç¤ºé«˜ä½D4
 	if(i)	VBuf[6]	=	LED_TAB[i];  		
 }
 
 /*-----------------------------------------------------------------------------*
  *  Function Description:                                                      *
- *      ÏÔÊ¾Êı×ÖµÍÁ½Î»D2-D1                                                    *
+ *      æ˜¾ç¤ºæ•°å­—ä½ä¸¤ä½D2-D1                                                    *
  *  Parameters:                                                                *
  *      ldigit                                                                 *
  *  Return                                                                     *
@@ -185,25 +185,25 @@ void	LEDDispNum_LO(uint8	ldigit)
 
     if(ldigit==0xff)
     {
-        VBuf[4] = Numf;                         //ÏÔÊ¾"FF"
+        VBuf[4] = Numf;                         //æ˜¾ç¤º"FF"
         VBuf[3] = Numf;
     }
     else
     {
-    	VBuf[4]	&=	0x04;						//ÇåLED»º³åÇø	
+    	VBuf[4]	&=	0x04;						//æ¸…LEDç¼“å†²åŒº	
     	VBuf[3]	=	0x00;
 
-    	i	=	ldigit & 0x0f;	  				//ÏÔÊ¾µÍÎ»D1
+    	i	=	ldigit & 0x0f;	  				//æ˜¾ç¤ºä½ä½D1
     	VBuf[3]	=	LED_TAB[i];  				
 
-    	i   =	(ldigit>>4) & 0x0f;             //ÏÔÊ¾¸ßÎ»D2
+    	i   =	(ldigit>>4) & 0x0f;             //æ˜¾ç¤ºé«˜ä½D2
     	VBuf[4]	|=	LED_TAB[i];  				
     }
 }
 
 /*-----------------------------------------------------------------------------*
  *  Function Description:                                                      *
- *      Çå³ı¹¦ÄÜÏÔÊ¾                                                           *
+ *      æ¸…é™¤åŠŸèƒ½æ˜¾ç¤º                                                           *
  *  Parameters:                                                                *
  *      None                                                                   *
  *  Return                                                                     *
@@ -218,7 +218,7 @@ void  LEDClearFun(void)
 
 /*-----------------------------------------------------------------------------*
  *  Function Description:                                                      *
- *      Çå³ıÊı×ÖÏÔÊ¾                                                           *
+ *      æ¸…é™¤æ•°å­—æ˜¾ç¤º                                                           *
  *  Parameters:                                                                *
  *      None                                                                   *
  *  Return                                                                     *
@@ -235,9 +235,9 @@ void  	LEDClearNum(void)
 #ifdef	DEBUG0
 /*-----------------------------------------------------------------------------*
  *  Function Description:                                                      *
- *      µ÷ÊÔĞÅÏ¢ÏÔÊ¾(ÎÂ¶È»òADÖµ)                                          	   *
+ *      è°ƒè¯•ä¿¡æ¯æ˜¾ç¤º(æ¸©åº¦æˆ–ADå€¼)                                          	   *
  *  Parameters:                                                                *
- *      msg(ĞèÒªÏÔÊ¾µÄĞÅÏ¢),u8CH(Í¨µÀºÅ)                                       *
+ *      msg(éœ€è¦æ˜¾ç¤ºçš„ä¿¡æ¯),u8CH(é€šé“å·)                                       *
  *  Return                                                                     *
  *      None                                                                   *
  *----------------------------------------------------------------------------*/
@@ -247,22 +247,22 @@ void	LEDDispMessage(uint8 msg,uint8 u8CH)
 
 	u8CH = u8CH+1;
 
-	LEDClearNum();								//Çå³ıÊı×ÖÇøÏÔÊ¾
+	LEDClearNum();								//æ¸…é™¤æ•°å­—åŒºæ˜¾ç¤º
 
 	bLED_Dot1	=	0;							//clr Dot1
 	bLED_Dot2	=	0;		  					//clr Dot2
 	
-	i	=	LOBYTE(HEX8toBCD(msg));		  		//ÏÔÊ¾ĞÅÏ¢µÍ¶şÎ»
+	i	=	LOBYTE(HEX8toBCD(msg));		  		//æ˜¾ç¤ºä¿¡æ¯ä½äºŒä½
 	LEDDispNum_LO(i);
 
-	i	=	HIBYTE(HEX8toBCD(msg)|(u8CH<<12));	//ÏÔÊ¾ĞÅÏ¢¸ß¶şÎ»ºÍÍ¨µÀºÅ
+	i	=	HIBYTE(HEX8toBCD(msg)|(u8CH<<12));	//æ˜¾ç¤ºä¿¡æ¯é«˜äºŒä½å’Œé€šé“å·
 	LEDDispNum_HI(i);
 }
 #endif
 
 /*-----------------------------------------------------------------------------*
  *  Function Description:                                                      *
- *      ±¨¾¯ÏÔÊ¾                                          					   *
+ *      æŠ¥è­¦æ˜¾ç¤º                                          					   *
  *  Parameters:                                                                *
  *      None                                                                   *
  *  Return                                                                     *
@@ -272,30 +272,30 @@ void	LEDDispError(void)
 {
 	uint8	i;
 
-	for(i=0;i<7;i++)			// LED BufÈ«²¿ÇåÁã
+	for(i=0;i<7;i++)			// LED Bufå…¨éƒ¨æ¸…é›¶
 	{
 		VBuf[i]	= 0;
 	}
 
-	if(bTopSensorErr)			//ÏÔÊ¾E0-¶¥²¿´«¸ĞÆ÷¿ªÂ·»ò¶ÌÂ·
+	if(bTopSensorErr)			//æ˜¾ç¤ºE0-é¡¶éƒ¨ä¼ æ„Ÿå™¨å¼€è·¯æˆ–çŸ­è·¯
 	{
 		LEDDispNum_LO(0xe0);
 		return;
 	}
 
-	if(bBotSensorErr) 			//ÏÔÊ¾E1-µ×²¿´«¸ĞÆ÷¿ªÂ·»ò¶ÌÂ·
+	if(bBotSensorErr) 			//æ˜¾ç¤ºE1-åº•éƒ¨ä¼ æ„Ÿå™¨å¼€è·¯æˆ–çŸ­è·¯
 	{
 		LEDDispNum_LO(0xe1);
 		return;
 	}
 
- 	if(bPanOverTempErr)	 		//ÏÔÊ¾E3-¹øµ×ÎÂ¶È¹ı¸ß
+ 	if(bPanOverTempErr)	 		//æ˜¾ç¤ºE3-é”…åº•æ¸©åº¦è¿‡é«˜
  	{
 		LEDDispNum_LO(0xe3);
  		return;
     }	
 
-    if(bNoPanErr)               //ÏÔÊ¾E5-ÎŞ¹ø
+    if(bNoPanErr)               //æ˜¾ç¤ºE5-æ— é”…
     {
         LEDDispNum_LO(0xe5);
         return;
@@ -304,7 +304,7 @@ void	LEDDispError(void)
 
 /*-----------------------------------------------------------------------------*
  *  Function Description:                                                      *
- *      Ê³ÎïÀàĞÍÏÔÊ¾                                          				   *
+ *      é£Ÿç‰©ç±»å‹æ˜¾ç¤º                                          				   *
  *  Parameters:                                                                *
  *      type                                                                   *
  *  Return                                                                     *
@@ -338,7 +338,7 @@ void    LEDDispFoodType(uint8 type)
   
 /*-----------------------------------------------------------------------------*
  *  Function Description:                                                      *
- *      Åëâ¿Ä£Ê½ÏÔÊ¾                                         				   *
+ *      çƒ¹é¥ªæ¨¡å¼æ˜¾ç¤º                                         				   *
  *  Parameters:                                                                *
  *      cookmode                                                               *
  *  Return                                                                     *
@@ -418,7 +418,7 @@ void	LEDDispCookMode(uint8 cookmode,uint8 diymode)
 
 /*-----------------------------------------------------------------------------*
  *  Function Description:                                                      *
- *      ´ı»úÏÔÊ¾                                        					   *
+ *      å¾…æœºæ˜¾ç¤º                                        					   *
  *  Parameters:                                                                *
  *      None                                                                   *
  *  Return                                                                     *
@@ -428,18 +428,18 @@ void	LEDDispReady(void)
 {
 	uint8	i;
 
-	for(i=0;i<7;i++)			// LED BufÈ«²¿ÇåÁã
+	for(i=0;i<7;i++)			// LED Bufå…¨éƒ¨æ¸…é›¶
 	{
 		VBuf[i]	=	0;
 	}
 	
-	LEDDispNum_HI(0xAA);		//ÏÔÊ¾"----"
+	LEDDispNum_HI(0xAA);		//æ˜¾ç¤º"----"
 	LEDDispNum_LO(0xAA);
 }
 
 /*-----------------------------------------------------------------------------*
  *  Function Description:                                                      *
- *      OFFÄ£Ê½Ê¡µçÏÔÊ¾                                        				   *
+ *      OFFæ¨¡å¼çœç”µæ˜¾ç¤º                                        				   *
  *  Parameters:                                                                *
  *      None                                                                   *
  *  Return                                                                     *
@@ -490,7 +490,7 @@ void	LEDDispPowerSaving(uint8 sequence)
 
 /*-----------------------------------------------------------------------------*
  *  Function Description:                                                      *
- *      LEDĞı×ª·½¿ò                                         				   *
+ *      LEDæ—‹è½¬æ–¹æ¡†                                         				   *
  *  Parameters:                                                                *
  *      sequence                                                               *
  *  Return                                                                     *
@@ -559,9 +559,9 @@ void  	LEDDispMovie(uint8 sequence)
 
 /*-----------------------------------------------------------------------------*
  *  Function Description:                                                      *
- *      LEDÊ±¼äÏÔÊ¾                                        				       *
+ *      LEDæ—¶é—´æ˜¾ç¤º                                        				       *
  *  Parameters:                                                                *
- *      ĞèÒªÏÔÊ¾µÄÊ±¼äµØÖ·Ö¸Õë                                                 *
+ *      éœ€è¦æ˜¾ç¤ºçš„æ—¶é—´åœ°å€æŒ‡é’ˆ                                                 *
  *  Return                                                                     *
  *      None                                                                   *
  *----------------------------------------------------------------------------*/
@@ -570,17 +570,17 @@ void	LEDDispTime(uint8	*pTime)
 	uint8	i;
 
 	i	=	LOBYTE(HEX8toBCD(pTime[1]));
-	LEDDispNum_LO(i);				//ÏÔÊ¾·ÖÖÓ
+	LEDDispNum_LO(i);				//æ˜¾ç¤ºåˆ†é’Ÿ
 
 	i	=	LOBYTE(HEX8toBCD(pTime[2]));
-	LEDDispNum_HI(i);				//ÏÔÊ¾Ğ¡Ê±
+	LEDDispNum_HI(i);				//æ˜¾ç¤ºå°æ—¶
 }
 
 /*-----------------------------------------------------------------------------*
  *  Function Description:                                                      *
- *      LEDÎÂ¶ÈÏÔÊ¾                                        				       *
+ *      LEDæ¸©åº¦æ˜¾ç¤º                                        				       *
  *  Parameters:                                                                *
- *      ĞèÒªÏÔÊ¾µÄÎÂ¶ÈÖµ                                                       *
+ *      éœ€è¦æ˜¾ç¤ºçš„æ¸©åº¦å€¼                                                       *
  *  Return                                                                     *
  *      None                                                                   *
  *----------------------------------------------------------------------------*/
@@ -588,27 +588,27 @@ void	LEDDispTemp(uint8 temp)
 {
 	uint8 i;
 	
-	LEDClearNum();							//Çå³ıÊı×ÖÇøÏÔÊ¾
+	LEDClearNum();							//æ¸…é™¤æ•°å­—åŒºæ˜¾ç¤º
 	bLED_Timer = 0;	 						//CLR Timer
 	bLED_Preset = 0;						//CLR Preset
 	bLED_Temp = 1;							//set Temperature
 	bLED_Dot1 =	0;							//clr Dot1
 	bLED_Dot2 =	0;		  					//clr Dot2
 	
-	i =	LOBYTE(HEX8toBCD(temp));		  	//ÏÔÊ¾ÎÂ¶ÈµÍ¶şÎ»
+	i =	LOBYTE(HEX8toBCD(temp));		  	//æ˜¾ç¤ºæ¸©åº¦ä½äºŒä½
 	LEDDispNum_LO(i);
-	i = HIBYTE(HEX8toBCD(temp));			//ÏÔÊ¾ÎÂ¶È¸ß¶şÎ»
+	i = HIBYTE(HEX8toBCD(temp));			//æ˜¾ç¤ºæ¸©åº¦é«˜äºŒä½
 	LEDDispNum_HI(i);
 	if(temp<100)
 	{
-		VBuf[6]	 =	0x00;					//ÎÂ¶ÈĞ¡ÓÚ100¶ÈÖ»ÏÔÊ¾µÍÁ½Î»	
+		VBuf[6]	 =	0x00;					//æ¸©åº¦å°äº100åº¦åªæ˜¾ç¤ºä½ä¸¤ä½	
 		VBuf[5]	 =	0x00;
 	}
 }
 
 /*-----------------------------------------------------------------------------*
  *  Function Description:                                                      *
- *      DIYÇĞ»»ÏÔÊ¾(d1,d2,d3)                                       		   *
+ *      DIYåˆ‡æ¢æ˜¾ç¤º(d1,d2,d3)                                       		   *
  *  Parameters:                                                                *
  *      DIY Number                                                             *
  *  Return                                                                     *
@@ -618,7 +618,7 @@ void	LEDDispTemp(uint8 temp)
 // {
 //    if((num>0)&&(num<5))
 //    {
-//        LEDClearNum();						    //Çå³ıÊı×ÖÇøÏÔÊ¾  
+//        LEDClearNum();						    //æ¸…é™¤æ•°å­—åŒºæ˜¾ç¤º  
 //        bLED_Timer = 0;	 						//CLR Timer
 //        bLED_Preset = 0;                        //CLR Preset
 //        bLED_Temp = 0;                          //CLR Temperature
@@ -670,9 +670,9 @@ void	LEDDispTemp(uint8 temp)
 
 /*-----------------------------------------------------------------------------*
  *  Function Description:                                                      *
- *      °´²½ÖèÏÔÊ¾×Ô¼ìÄÚÈİ                                        			   *
+ *      æŒ‰æ­¥éª¤æ˜¾ç¤ºè‡ªæ£€å†…å®¹                                        			   *
  *  Parameters:                                                                *
- *      ×Ô¼ì²½Öè                                                               *
+ *      è‡ªæ£€æ­¥éª¤                                                               *
  *  Return                                                                     *
  *      None                                                                   *
  *----------------------------------------------------------------------------*/
@@ -681,48 +681,48 @@ void	LEDDispTemp(uint8 temp)
     uint8	u8BotDegree	=	ADCGetData(AD_CH_BOT);
 	uint8   u8TopDegree =   ADCGetData(AD_CH_TOP);
     
-    LEDDispAll(0);                      //Çå³ıËùÓĞÏÔÊ¾
+    LEDDispAll(0);                      //æ¸…é™¤æ‰€æœ‰æ˜¾ç¤º
     switch(step)
     {
         case    0:
-            LEDDispNum_HI(0x12);	 	//ÏÔÊ¾ĞòÁĞºÅ--Plug in & Long press"start"
+            LEDDispNum_HI(0x12);	 	//æ˜¾ç¤ºåºåˆ—å·--Plug in & Long press"start"
 			LEDDispNum_LO(0x04);    
             break;
         case    1:
-            LEDDispAll(1);              //LEDÈ«ÏÔ--Press">"
+            LEDDispAll(1);              //LEDå…¨æ˜¾--Press">"
             break;
         case    2: 
-            LEDDispNum_LO(0xB1);        //ÏÔÊ¾"b1"--Press"cancel"
+            LEDDispNum_LO(0xB1);        //æ˜¾ç¤º"b1"--Press"cancel"
             break;                      
         case    3:                                           
-            LEDDispNum_LO(0xB2);        //ÏÔÊ¾"b2"--Press"Timer"
+            LEDDispNum_LO(0xB2);        //æ˜¾ç¤º"b2"--Press"Timer"
             break; 
         case    4:
-            LEDDispNum_LO(0xB3);        //ÏÔÊ¾"b3"--Press"Preset"
+            LEDDispNum_LO(0xB3);        //æ˜¾ç¤º"b3"--Press"Preset"
             break;
         case    5:
-            LEDDispNum_LO(0xB4);        //ÏÔÊ¾"b4"--Press"<"
+            LEDDispNum_LO(0xB4);        //æ˜¾ç¤º"b4"--Press"<"
             break;
         case    6:
-            LEDDispNum_LO(0xB5);        //ÏÔÊ¾"b5"--Press"DIY"
+            LEDDispNum_LO(0xB5);        //æ˜¾ç¤º"b5"--Press"DIY"
             break;
         case    7:
-            LEDDispNum_LO(0xB6);        //ÏÔÊ¾"b6"--Press">"
+            LEDDispNum_LO(0xB6);        //æ˜¾ç¤º"b6"--Press">"
             break;
         case    8:
-            LEDDispNum_LO(0xB7);        //ÏÔÊ¾"b7"--Press"Menu"
+            LEDDispNum_LO(0xB7);        //æ˜¾ç¤º"b7"--Press"Menu"
             break;
         case    9:
-            LEDDispTemp(u8BotDegree);   //ÏÔÊ¾"temperature of bottom NTC"--Press"Menu"
+            LEDDispTemp(u8BotDegree);   //æ˜¾ç¤º"temperature of bottom NTC"--Press"Menu"
             break;
         case    10:
-            LEDDispTemp(u8TopDegree);   //ÏÔÊ¾"temperature of top NTC"--Press"Menu"
+            LEDDispTemp(u8TopDegree);   //æ˜¾ç¤º"temperature of top NTC"--Press"Menu"
             break;
         case    11:
-            LEDDispNum_LO(0xC1);        //ÏÔÊ¾"H1"--Press"Menu"
+            LEDDispNum_LO(0xC1);        //æ˜¾ç¤º"H1"--Press"Menu"
             break;
         case    12:
-            LEDDispNum_HI(0x00);        //ÏÔÊ¾"OFF"--Press"Menu"
+            LEDDispNum_HI(0x00);        //æ˜¾ç¤º"OFF"--Press"Menu"
             LEDDispNum_LO(0xFF);
             break;
     }
@@ -730,7 +730,7 @@ void	LEDDispTemp(uint8 temp)
 
 /*-----------------------------------------------------------------------------*
  *  Function Description:                                                      *
- *      LED´¦Àí(¹¦ÄÜ²Ëµ¥ÉÁË¸¿ØÖÆ&&×´Ì¬Ö¸Ê¾µÆ¿ØÖÆ)                              *
+ *      LEDå¤„ç†(åŠŸèƒ½èœå•é—ªçƒæ§åˆ¶&&çŠ¶æ€æŒ‡ç¤ºç¯æ§åˆ¶)                              *
  *  Parameters:                                                                *
  *      None                                                                   *
  *  Return                                                                     *
@@ -750,21 +750,21 @@ void    LEDProc(uint8 sysid)
 		}    
 	}
 
-	//×´Ì¬Ö¸Ê¾µÆ¿ØÖÆ
+	//çŠ¶æ€æŒ‡ç¤ºç¯æ§åˆ¶
 	switch(sysid)
 	{
-		case	0:					//¸´Î»
+		case	0:					//å¤ä½
 			LEDDispAll(1);
 			break;
 		
-		case    1:					//´ı»ú
-		case    5:                  //OFFÄ£Ê½
-        case	6:					//±¨¾¯
+		case    1:					//å¾…æœº
+		case    5:                  //OFFæ¨¡å¼
+        case	6:					//æŠ¥è­¦
 			bLED_Start = 0;
 			bLED_Warm = 0;
 			break;    
 		
-		case	2:					//ÉèÖÃ
+		case	2:					//è®¾ç½®
 			bLED_Start = 0;
 			bLED_Warm =	0;
 			if(u8BlankCnt >= 63)
@@ -774,17 +774,17 @@ void    LEDProc(uint8 sysid)
 			}
 			break;
 
-	   	case	3:	 				//ÔËĞĞ
+	   	case	3:	 				//è¿è¡Œ
 			bLED_Start = 1;	
 			bLED_Warm =	0;
 			break;
 
-		case	4:					//±£ÎÂ
+		case	4:					//ä¿æ¸©
 			bLED_Start = 0;
 			bLED_Warm =	1; 
 			break;	
 			
-	    case    7:					//×Ô¼ì
+	    case    7:					//è‡ªæ£€
             LEDDispSelfChk(m_u8SelfChkStep);
 			break;
 			

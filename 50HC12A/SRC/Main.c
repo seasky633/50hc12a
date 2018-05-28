@@ -51,52 +51,52 @@
 /*-----------------------------*
  *  public variable declaration*
  *----------------------------*/
-uint8	g_u8SecTick	= 0;				   	//Ê±ÖÓ½ÚÅÄ¼ÆÊıÆ÷
-uint8	bdata	 g_u8SysStatus[4];		   	//ÏµÍ³±êÖ¾
-sbit bSysTick	 =	g_u8SysStatus[0]^0;	   	//ÏµÍ³Tick±êÖ¾
-sbit bSys_1000MS =  g_u8SysStatus[0]^1;    	//ÏµÍ³1000ms±êÖ¾
-sbit bKeyPress   =  g_u8SysStatus[0]^2;    	//ÓĞÎŞ°´¼ü±êÖ¾
-sbit bADOK       =	g_u8SysStatus[0]^3;    	//AD×ª»»Íê³É±êÖ¾
-sbit bFirstPress = 	g_u8SysStatus[0]^4;    	//µÚÒ»´Î°´¼ü±êÖ¾
-sbit bNewKey     =	g_u8SysStatus[0]^5;    	//ĞÂ°´¼ü°´ÏÂ±êÖ¾
-sbit bLEDBlank   =	g_u8SysStatus[0]^6;	   	//ÉÁµÆ±êÖ¾
-sbit bTempReach  =  g_u8SysStatus[0]^7;    	//´ïµ½ÎÂ¶ÈÖµ±êÖ¾
+uint8	g_u8SecTick	= 0;				   	//æ—¶é’ŸèŠ‚æ‹è®¡æ•°å™¨
+uint8	bdata	 g_u8SysStatus[4];		   	//ç³»ç»Ÿæ ‡å¿—
+sbit bSysTick	 =	g_u8SysStatus[0]^0;	   	//ç³»ç»ŸTickæ ‡å¿—
+sbit bSys_1000MS =  g_u8SysStatus[0]^1;    	//ç³»ç»Ÿ1000msæ ‡å¿—
+sbit bKeyPress   =  g_u8SysStatus[0]^2;    	//æœ‰æ— æŒ‰é”®æ ‡å¿—
+sbit bADOK       =	g_u8SysStatus[0]^3;    	//ADè½¬æ¢å®Œæˆæ ‡å¿—
+sbit bFirstPress = 	g_u8SysStatus[0]^4;    	//ç¬¬ä¸€æ¬¡æŒ‰é”®æ ‡å¿—
+sbit bNewKey     =	g_u8SysStatus[0]^5;    	//æ–°æŒ‰é”®æŒ‰ä¸‹æ ‡å¿—
+sbit bLEDBlank   =	g_u8SysStatus[0]^6;	   	//é—ªç¯æ ‡å¿—
+sbit bTempReach  =  g_u8SysStatus[0]^7;    	//è¾¾åˆ°æ¸©åº¦å€¼æ ‡å¿—
 
-sbit bHeatArdReq  = g_u8SysStatus[1]^0;     //²à²¿¼ÓÈÈÇëÇó±êÖ¾
-sbit bHeatTopReq  = g_u8SysStatus[1]^1;     //¶¥²¿¼ÓÈÈÇëÇó±êÖ¾
-sbit bCookBySctEN = g_u8SysStatus[1]^2;     //ÔÊĞí°´ÎÂ¶ÈÇúÏßÅëâ¿±êÖ¾
-sbit bSysPwrOn    = g_u8SysStatus[1]^3;     //ÏµÍ³ÉÏµç±êÖ¾
-sbit bTempAch1st  = g_u8SysStatus[1]^4;     //µÚÒ»´Î´ïµ½Éè¶¨ÎÂ¶Èµã
-sbit bHeatState   = g_u8SysStatus[1]^5;     //¼ÓÈÈ×´Ì¬±êÖ¾
-sbit bCalBookTime_EN = g_u8SysStatus[1]^6;	//ÔÊĞíÔ¤Ô¼¼ÆËã±êÖ¾
-sbit bLEDComeback =	g_u8SysStatus[1]^7;	    //LEDÏÔÊ¾»Ö¸´±êÖ¾
+sbit bHeatArdReq  = g_u8SysStatus[1]^0;     //ä¾§éƒ¨åŠ çƒ­è¯·æ±‚æ ‡å¿—
+sbit bHeatTopReq  = g_u8SysStatus[1]^1;     //é¡¶éƒ¨åŠ çƒ­è¯·æ±‚æ ‡å¿—
+sbit bCookBySctEN = g_u8SysStatus[1]^2;     //å…è®¸æŒ‰æ¸©åº¦æ›²çº¿çƒ¹é¥ªæ ‡å¿—
+sbit bSysPwrOn    = g_u8SysStatus[1]^3;     //ç³»ç»Ÿä¸Šç”µæ ‡å¿—
+sbit bTempAch1st  = g_u8SysStatus[1]^4;     //ç¬¬ä¸€æ¬¡è¾¾åˆ°è®¾å®šæ¸©åº¦ç‚¹
+sbit bHeatState   = g_u8SysStatus[1]^5;     //åŠ çƒ­çŠ¶æ€æ ‡å¿—
+sbit bCalBookTime_EN = g_u8SysStatus[1]^6;	//å…è®¸é¢„çº¦è®¡ç®—æ ‡å¿—
+sbit bLEDComeback =	g_u8SysStatus[1]^7;	    //LEDæ˜¾ç¤ºæ¢å¤æ ‡å¿—
 
-sbit bPowerAdjSt     = g_u8SysStatus[2]^0;  //¹¦ÂÊµ÷ÕûÅĞ¶Ï±êÖ¾
-sbit bHeatPwrReq    = g_u8SysStatus[2]^1;   //¼ÓÈÈ×Ü¿ª¹Ø
-sbit bPwrDown     = g_u8SysStatus[2]^2;     //ÏµÍ³µôµç±êÖ¾
+sbit bPowerAdjSt     = g_u8SysStatus[2]^0;  //åŠŸç‡è°ƒæ•´åˆ¤æ–­æ ‡å¿—
+sbit bHeatPwrReq    = g_u8SysStatus[2]^1;   //åŠ çƒ­æ€»å¼€å…³
+sbit bPwrDown     = g_u8SysStatus[2]^2;     //ç³»ç»Ÿæ‰ç”µæ ‡å¿—
 sbit bTimeCountDown = g_u8SysStatus[2]^3;
 sbit bTimeDisp_EN   = g_u8SysStatus[2]^4;
-sbit bBookTime_EN   = g_u8SysStatus[2]^5;   //Ô¤Ô¼Ê±¼äÓĞĞ§
+sbit bBookTime_EN   = g_u8SysStatus[2]^5;   //é¢„çº¦æ—¶é—´æœ‰æ•ˆ
 sbit bTempDisp_EN   = g_u8SysStatus[2]^6;   
-sbit bLEDNumBlankSt = g_u8SysStatus[2]^7;   //LEDÊı×ÖÉÁË¸±êÖ¾
+sbit bLEDNumBlankSt = g_u8SysStatus[2]^7;   //LEDæ•°å­—é—ªçƒæ ‡å¿—
 
-sbit bStageChgReq   = g_u8SysStatus[3]^0;	//¿ØÖÆÌø×ªÇëÇó
-sbit bStageChgOK    = g_u8SysStatus[3]^1;	//ÔÊĞíÌø×ª
-sbit bWarm_EN       = g_u8SysStatus[3]^2;	//±£ÎÂ±êÖ¾
-sbit bWarmLedBlank  = g_u8SysStatus[3]^3;	//±£ÎÂµÆÉÁË¸
-sbit bBoilChk_EN    = g_u8SysStatus[3]^4;	//·ĞÌÚÅĞ¶ÏÓĞĞ§
-sbit bBoilReach     = g_u8SysStatus[3]^5;   //ÒÑ·ĞÌÚ±êÖ¾
-sbit bKeyMusic_EN   = g_u8SysStatus[3]^6;	//·äÃùÆ÷±êÖ¾
+sbit bStageChgReq   = g_u8SysStatus[3]^0;	//æ§åˆ¶è·³è½¬è¯·æ±‚
+sbit bStageChgOK    = g_u8SysStatus[3]^1;	//å…è®¸è·³è½¬
+sbit bWarm_EN       = g_u8SysStatus[3]^2;	//ä¿æ¸©æ ‡å¿—
+sbit bWarmLedBlank  = g_u8SysStatus[3]^3;	//ä¿æ¸©ç¯é—ªçƒ
+sbit bBoilChk_EN    = g_u8SysStatus[3]^4;	//æ²¸è…¾åˆ¤æ–­æœ‰æ•ˆ
+sbit bBoilReach     = g_u8SysStatus[3]^5;   //å·²æ²¸è…¾æ ‡å¿—
+sbit bKeyMusic_EN   = g_u8SysStatus[3]^6;	//èœ‚é¸£å™¨æ ‡å¿—
 
-uint8	bdata   g_u8ErrorType;				//±¨¾¯ÀàĞÍ
-sbit bTopSensorErr   = g_u8ErrorType^0;     //ÉÏ´«¸ĞÆ÷´íÎó±êÖ¾
-sbit bBotSensorErr   = g_u8ErrorType^1;     //ÏÂ´«¸ĞÆ÷´íÎó±êÖ¾
-sbit bIGBTSensorErr  = g_u8ErrorType^2;     //IGBT´«¸ĞÆ÷´íÎó±êÖ¾
-sbit bNoPanErr       = g_u8ErrorType^3;    	//ÎŞ¹ø±êÖ¾
-sbit bPanOverTempErr = g_u8ErrorType^4;    	//¹øµ×ÎÂ¶È¹ı¸ß
-sbit bVoltageErr     = g_u8ErrorType^5;    	//µçÑ¹Òì³£±êÖ¾
-sbit bHaltHeatErr    = g_u8ErrorType^6;    	//²»¼ÓÈÈ±êÖ¾
-sbit bIGBTOverTempErr= g_u8ErrorType^7;     //IGBTÎÂ¶È¹ı¸ß±êÖ¾
+uint8	bdata   g_u8ErrorType;				//æŠ¥è­¦ç±»å‹
+sbit bTopSensorErr   = g_u8ErrorType^0;     //ä¸Šä¼ æ„Ÿå™¨é”™è¯¯æ ‡å¿—
+sbit bBotSensorErr   = g_u8ErrorType^1;     //ä¸‹ä¼ æ„Ÿå™¨é”™è¯¯æ ‡å¿—
+sbit bIGBTSensorErr  = g_u8ErrorType^2;     //IGBTä¼ æ„Ÿå™¨é”™è¯¯æ ‡å¿—
+sbit bNoPanErr       = g_u8ErrorType^3;    	//æ— é”…æ ‡å¿—
+sbit bPanOverTempErr = g_u8ErrorType^4;    	//é”…åº•æ¸©åº¦è¿‡é«˜
+sbit bVoltageErr     = g_u8ErrorType^5;    	//ç”µå‹å¼‚å¸¸æ ‡å¿—
+sbit bHaltHeatErr    = g_u8ErrorType^6;    	//ä¸åŠ çƒ­æ ‡å¿—
+sbit bIGBTOverTempErr= g_u8ErrorType^7;     //IGBTæ¸©åº¦è¿‡é«˜æ ‡å¿—
 
 
 /*-----------------------------------------------------------------------------*
@@ -121,7 +121,7 @@ void main(void)
 		if(LVICR&0x20)//power down to <4.0V
 		{
 		    bPwrDown = 1;                       //system Powerdown
-			//¹Ø±ÕÏÔÊ¾
+			//å…³é—­æ˜¾ç¤º
             P1 &= 0x87;                         //all segment off
             P3 &= 0xC0;							
 	        P1 |= 0x80;							//all com off
@@ -152,16 +152,16 @@ void main(void)
 		UIProc();
  		ScriptProc();
 
-        //×Ô¼ìÆô¶¯
+        //è‡ªæ£€å¯åŠ¨
         AutotestActivate();
         
- 		//¹ÊÕÏ¼ì²â
+ 		//æ•…éšœæ£€æµ‹
  	  	FaultCheckProc();
  		
- 		//·ĞÌÚÅĞ¶Ï
+ 		//æ²¸è…¾åˆ¤æ–­
  //		BoilCheckProc();
 
- 		//ÎÂ¶È¿ØÖÆ
+ 		//æ¸©åº¦æ§åˆ¶
  		KeepTempProc();
  		HeatProc();
 

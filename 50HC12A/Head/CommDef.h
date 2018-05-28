@@ -3,11 +3,11 @@
 
 	extern	uint8	bdata   g_u8ErrorType;
 	
-	//1S时钟标志(用于定时&预约)
+	//1S鏃堕挓鏍囧織(鐢ㄤ簬瀹氭椂&棰勭害)
 	extern	bit	bSys1S_CookTime;
 	extern	bit	bSys1S_BookTime;
 	
-	//系统标志
+	//绯荤粺鏍囧織
 	extern	bit	bSysTick;	
 	extern  bit bSys_1000MS; 
 	extern  bit bKeyPress; 
@@ -43,7 +43,7 @@
 	extern  bit bBoilReach;    
 	extern  bit bKeyMusic_EN;      
 
-	//报警类型
+	//鎶ヨ绫诲瀷
     extern  bit bTopSensorErr;  
     extern  bit bBotSensorErr;   
     extern  bit bIGBTSensorErr; 
@@ -53,7 +53,7 @@
     extern  bit bHaltHeatErr;    
     extern  bit bIGBTOverTempErr;
 	
-	//报警阶段
+	//鎶ヨ闃舵
 	#define	SYS_ERROR_CHECK_START	0
 	#define	SYS_ERROR_CHECK_END		0xA5
 

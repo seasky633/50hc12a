@@ -214,7 +214,7 @@ void WDT_init(void)
 
 /*-----------------------------------------------------------------------------*
  *  Function Description:                                                      *
- *      ¶¨Ê±Æ÷1ÖĞ¶Ï´¦Àí(ÖĞ¶ÏÈë¿ÚµØÖ· = 0x0073 =115=N * 8 + 3=>>N = 14)     	   *
+ *      å®šæ—¶å™¨1ä¸­æ–­å¤„ç†(ä¸­æ–­å…¥å£åœ°å€ = 0x0073 =115=N * 8 + 3=>>N = 14)     	   *
  *  Parameters:                                                                *
  *      None                                                                   *
  *  Return                                                                     *
@@ -235,7 +235,7 @@ void	Timer1_ISP(void) interrupt 14       //125us
     	if(m_u8SysTickCnt>=8) 
     	{
     		m_u8SysTickCnt = 0;
-    		bSysTick = 1;					// ÏµÍ³8MSÊ±ÖÓ½ÚÅÄ±êÖ¾
+    		bSysTick = 1;					// ç³»ç»Ÿ8MSæ—¶é’ŸèŠ‚æ‹æ ‡å¿—
     	}
         
     	if(m_u16SysTimeCnt>=1000)
@@ -252,7 +252,7 @@ void	Timer1_ISP(void) interrupt 14       //125us
         {
             if(m_u8M100Cnt==103)
             {
-                CHK_IH_Com_Set();           //Ë¢ĞÂIHÉèÖÃÊı¾İ
+                CHK_IH_Com_Set();           //åˆ·æ–°IHè®¾ç½®æ•°æ®
             }
         }
 

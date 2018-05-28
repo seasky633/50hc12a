@@ -58,52 +58,52 @@ static	void	SelfCheckProc(void);
 /*-----------------------------*
  *  public variable declaration*
  *----------------------------*/
-uint8	m_u8SysID;	  				//ÏµÍ³×´Ì¬±äÁ¿
-uint8   m_u8PrevSysID;  			//µôµçÖ®Ç°ÏµÍ³×´Ì¬±äÁ¿
-uint8   m_u8CookMode;     			//Åëâ¿Ä£Ê½£¬0 ÎŞĞ§£¬1 Soup 2 Bake 3 Stew 4 Steam 5 Fry
+uint8	m_u8SysID;	  				//ç³»ç»ŸçŠ¶æ€å˜é‡
+uint8   m_u8PrevSysID;  			//æ‰ç”µä¹‹å‰ç³»ç»ŸçŠ¶æ€å˜é‡
+uint8   m_u8CookMode;     			//çƒ¹é¥ªæ¨¡å¼ï¼Œ0 æ— æ•ˆï¼Œ1 Soup 2 Bake 3 Stew 4 Steam 5 Fry
 									//			     6 Rice 7 Pilaf 8 OPorridge 9 Jam 10 Pasta
                                     //               11 Yogurt 12 Cheese 13 Dough 14 Reheat 
-uint8   m_u8DIYMode;                //DIYÄ£Ê½:DIY1,DIY2,DIY3,...
-uint8   m_u8DIYSwitch;              //DIYÄ£Ê½4µ÷ÕûÇĞ»»:0 ²»µ÷Õû  1 DIY1  2 DIY2
-uint8   m_u8DIYCookStage;           //DIYÄ£Ê½4ÔËĞĞ½×¶Î:0 ½áÊø    1 DIY1  2 DIY2
-uint8   m_u8FoodType;      			//Ê³ÎïÄ£Ê½£¬0 ÎŞĞ§£¬1 Vegetables  2 Fish  3 Poultry  4 Meat
-uint8	m_u8PreTmp;					//ÎÂ¶È³õÊ¼Öµ
-uint8	m_u8TimeDispCnt;			//Ê±¼äÉÁË¸ÏÔÊ¾¼ÆÊıÆ÷
+uint8   m_u8DIYMode;                //DIYæ¨¡å¼:DIY1,DIY2,DIY3,...
+uint8   m_u8DIYSwitch;              //DIYæ¨¡å¼4è°ƒæ•´åˆ‡æ¢:0 ä¸è°ƒæ•´  1 DIY1  2 DIY2
+uint8   m_u8DIYCookStage;           //DIYæ¨¡å¼4è¿è¡Œé˜¶æ®µ:0 ç»“æŸ    1 DIY1  2 DIY2
+uint8   m_u8FoodType;      			//é£Ÿç‰©æ¨¡å¼ï¼Œ0 æ— æ•ˆï¼Œ1 Vegetables  2 Fish  3 Poultry  4 Meat
+uint8	m_u8PreTmp;					//æ¸©åº¦åˆå§‹å€¼
+uint8	m_u8TimeDispCnt;			//æ—¶é—´é—ªçƒæ˜¾ç¤ºè®¡æ•°å™¨
 uint8	m_u8MovCnt;
 uint8   m_u8ChkCnt;				
 uint8	m_u8CurTimeDispCnt;
-uint8	m_DataTmp;					//ĞèÒªÏÔÊ¾µÄÊı¾İ
-uint8   u8CookTemp;				    //Åëâ¿ÎÂ¶È
-uint8   MaxCookTemp;				//×î¸ßµÄÅëâ¿ÎÂ¶È
-uint8   DefCookTemp;                //Ä¬ÈÏµÄÅëâ¿ÎÂ¶È
-uint8   MinCookTemp;                //×îµÍµÄÅëâ¿ÎÂ¶È
-uint8	tmMaxCookTime[3];			//×î³¤µÄÅëâ¿Ê±¼ä
-uint8	tmDefCookTime[3];			//Ä¬ÈÏµÄÅëâ¿Ê±¼ä
-uint8	tmMinCookTime[3];			//×î¶ÌµÄÅëâ¿Ê±¼ä
-uint8	tmCalCookTime[3];			//Ô¤Ô¼½áÊø,Åëâ¿¿ªÊ¼Ê±¼ä
-uint8	tmIntCookTime[3];			//¼ä¸ôÊ±¼ä==Ô¤Ô¼Éè¶¨Ê±¼ä-µ±Ç°Ê±¼ä
-uint8   idata  tmMinBookTime[3];	//×î¶ÌµÄÔ¤Ô¼Ê±¼ä
-uint8	idata  u8CHDispCnt[2];      //Í¨µÀÏÔÊ¾¼ÆÊıÆ÷
-uint8   idata  m_u8DispDelayCnt;    //ÏÔÊ¾ÑÓÊ±¼ÆÊıÆ÷
-uint8   idata  m_u8AutoRunCnt;		//×Ô¶¯ÔËĞĞ¼ÆÊıÆ÷
-uint8   idata  u8ErrorCnt;          //±¨¾¯¼ÆÊıÆ÷
-uint8   idata  u8NoPanCnt;          //ÎŞ¹ø¼ÆÊıÆ÷
-uint8   idata  u8VoltageCnt;        //µçÑ¹¼ÆÊıÆ÷
-uint8   xdata  u16IGBTCnt;          //IGBTÈÈÃô¿ªÂ·¼ÆÊıÆ÷
-uint8   xdata  m_u8SelfChkStep;		//×Ô¼ì²½Öè
-uint16  xdata  u16PoweronCnt;       //ÉÏµç×Ô¼ì¼ÆÊıÆ÷
+uint8	m_DataTmp;					//éœ€è¦æ˜¾ç¤ºçš„æ•°æ®
+uint8   u8CookTemp;				    //çƒ¹é¥ªæ¸©åº¦
+uint8   MaxCookTemp;				//æœ€é«˜çš„çƒ¹é¥ªæ¸©åº¦
+uint8   DefCookTemp;                //é»˜è®¤çš„çƒ¹é¥ªæ¸©åº¦
+uint8   MinCookTemp;                //æœ€ä½çš„çƒ¹é¥ªæ¸©åº¦
+uint8	tmMaxCookTime[3];			//æœ€é•¿çš„çƒ¹é¥ªæ—¶é—´
+uint8	tmDefCookTime[3];			//é»˜è®¤çš„çƒ¹é¥ªæ—¶é—´
+uint8	tmMinCookTime[3];			//æœ€çŸ­çš„çƒ¹é¥ªæ—¶é—´
+uint8	tmCalCookTime[3];			//é¢„çº¦ç»“æŸ,çƒ¹é¥ªå¼€å§‹æ—¶é—´
+uint8	tmIntCookTime[3];			//é—´éš”æ—¶é—´==é¢„çº¦è®¾å®šæ—¶é—´-å½“å‰æ—¶é—´
+uint8   idata  tmMinBookTime[3];	//æœ€çŸ­çš„é¢„çº¦æ—¶é—´
+uint8	idata  u8CHDispCnt[2];      //é€šé“æ˜¾ç¤ºè®¡æ•°å™¨
+uint8   idata  m_u8DispDelayCnt;    //æ˜¾ç¤ºå»¶æ—¶è®¡æ•°å™¨
+uint8   idata  m_u8AutoRunCnt;		//è‡ªåŠ¨è¿è¡Œè®¡æ•°å™¨
+uint8   idata  u8ErrorCnt;          //æŠ¥è­¦è®¡æ•°å™¨
+uint8   idata  u8NoPanCnt;          //æ— é”…è®¡æ•°å™¨
+uint8   idata  u8VoltageCnt;        //ç”µå‹è®¡æ•°å™¨
+uint8   xdata  u16IGBTCnt;          //IGBTçƒ­æ•å¼€è·¯è®¡æ•°å™¨
+uint8   xdata  m_u8SelfChkStep;		//è‡ªæ£€æ­¥éª¤
+uint16  xdata  u16PoweronCnt;       //ä¸Šç”µè‡ªæ£€è®¡æ•°å™¨
 uint16  xdata  u16DispDIYCnt;       //display diy xx 2s
-uint8	xdata  m_u8DIYCookMode[3];	//¸´ÖÆµ½DIYµÄÅëâ¿Ä£Ê½
-uint8   xdata  m_u8DIYFoodType[3];  //¸´ÖÆµ½DIYµÄÊ³ÎïÄ£Ê½
-uint8   xdata  tmDIY1CookTime[3];   //¸´ÖÆµ½DIY1µÄÅëâ¿Ê±¼ä
-uint8   xdata  u8DIY1CookTemp;      //¸´ÖÆµ½DIY1µÄÅëâ¿ÎÂ¶È
-//uint8   xdata  tmDIY2CookTime[3];   //¸´ÖÆµ½DIY2µÄÅëâ¿Ê±¼ä
-//uint8   xdata  u8DIY2CookTemp;      //¸´ÖÆµ½DIY2µÄÅëâ¿ÎÂ¶È
-//uint8   xdata  tmDIY3CookTime[3];   //¸´ÖÆµ½DIY3µÄÅëâ¿Ê±¼ä
-//uint8   xdata  u8DIY3CookTemp;      //¸´ÖÆµ½DIY3µÄÅëâ¿ÎÂ¶È
+uint8	xdata  m_u8DIYCookMode[3];	//å¤åˆ¶åˆ°DIYçš„çƒ¹é¥ªæ¨¡å¼
+uint8   xdata  m_u8DIYFoodType[3];  //å¤åˆ¶åˆ°DIYçš„é£Ÿç‰©æ¨¡å¼
+uint8   xdata  tmDIY1CookTime[3];   //å¤åˆ¶åˆ°DIY1çš„çƒ¹é¥ªæ—¶é—´
+uint8   xdata  u8DIY1CookTemp;      //å¤åˆ¶åˆ°DIY1çš„çƒ¹é¥ªæ¸©åº¦
+//uint8   xdata  tmDIY2CookTime[3];   //å¤åˆ¶åˆ°DIY2çš„çƒ¹é¥ªæ—¶é—´
+//uint8   xdata  u8DIY2CookTemp;      //å¤åˆ¶åˆ°DIY2çš„çƒ¹é¥ªæ¸©åº¦
+//uint8   xdata  tmDIY3CookTime[3];   //å¤åˆ¶åˆ°DIY3çš„çƒ¹é¥ªæ—¶é—´
+//uint8   xdata  u8DIY3CookTemp;      //å¤åˆ¶åˆ°DIY3çš„çƒ¹é¥ªæ¸©åº¦
 uint16  xdata  m_u16Movcnt;
-uint8   xdata  u8BolingWaterTest;     //ìÒË®²âÊÔÄ£Ê½
-//Åëâ¿Ê±¼ä±í					       Soup     Bake     Stew     Steam    Frying   OmPdge   Jam
+uint8   xdata  u8BolingWaterTest;     //ç…²æ°´æµ‹è¯•æ¨¡å¼
+//çƒ¹é¥ªæ—¶é—´è¡¨					       Soup     Bake     Stew     Steam    Frying   OmPdge   Jam
 uint16  code	MinCookTime_Table[]	= {0x000A,  0x0005,  0x0014,  0x0005,  0x0005,  0x0005,  0x0005,      
 //                                     Pasta    Yoghurt  Cheese   Dough    Reheat   DIY
                                        0x0003,  0x0100,  0x001E,  0x000A,  0x0005,  0x0005}; 
@@ -121,7 +121,7 @@ uint16  code    DefFoodTime_Table[4][4] = { {0x0028,  0x002D,  0x0032,  0x0100},
                                             {0x0028,  0x0028,  0x0100,  0x0200},     //Stew
                                             {0x0023,  0x0019,  0x002D,  0x0037} };   //Steam
                                           
-//Åëâ¿ÎÂ¶È±í						   Bake     Soup     Fry      Stew     Porridge  Reheat  DIY
+//çƒ¹é¥ªæ¸©åº¦è¡¨						   Bake     Soup     Fry      Stew     Porridge  Reheat  DIY
 uint8	code 	MinCookTemp_Table[]	= {0x8C,    0x5A,    0x78,    0x50,    0x5A,     0x50,   0x28};
 uint8   code    DefCookTemp_Table[] = {0x8C,    0x64,    0xA0,    0x64,    0x64,     0x64,   0x64};
 uint8   code    MaxCookTemp_Table[] = {0xA0,    0x6E,    0xA0,    0x6E,    0x64,     0x64,   0xA0};
@@ -135,7 +135,7 @@ uint8   code    DefFoodTemp_Table[] = {0x8C,    0xA0,    0xA0,    0xA0};
 
 /*-----------------------------------------------------------------------------*
  *  Function Description:                                                      *
- *      ÈË»ú½çÃæ´¦Àí                                    					   *
+ *      äººæœºç•Œé¢å¤„ç†                                    					   *
  *  Parameters:                                                                *
  *      None                                                                   *
  *  Return                                                                     *
@@ -185,7 +185,7 @@ void	UIProc(void)
 
 /*-----------------------------------------------------------------------------*
  *  Function Description:                                                      *
- *      	¸´Î»×´Ì¬´¦Àí                                     				   *
+ *      	å¤ä½çŠ¶æ€å¤„ç†                                     				   *
  *  Parameters:                                                                *
  *      None                                                                   *
  *  Return                                                                     *
@@ -197,7 +197,7 @@ static void	ResetProc(void)
 	{
         if(rEepromCache[EEP_MUSIC_EN]==0xA5)
 	    {
-		    bKeyMusic_EN = 0;       //¹Ø±Õ°´¼üÉùÒô
+		    bKeyMusic_EN = 0;       //å…³é—­æŒ‰é”®å£°éŸ³
 	    }
 	    else
 	    {
@@ -209,7 +209,7 @@ static void	ResetProc(void)
 
 /*-----------------------------------------------------------------------------*
  *  Function Description:                                                      *
- *      	´ı»ú×´Ì¬´¦Àí                                     				   *
+ *      	å¾…æœºçŠ¶æ€å¤„ç†                                     				   *
  *  Parameters:                                                                *
  *      None                                                                   *
  *  Return                                                                     *
@@ -236,7 +236,7 @@ static void ReadyProc(void)
         
         }
         
-        if((u8Key==VAL_KEY_START)&&(g_u16KeyRpyCnt==20))	//³¤°´3S½øÈëOFFÄ£Ê½
+        if((u8Key==VAL_KEY_START)&&(g_u16KeyRpyCnt==20))	//é•¿æŒ‰3Sè¿›å…¥OFFæ¨¡å¼
         {
             EnterPowerDown();
             PlaySound(MusicPoweron);
@@ -257,13 +257,13 @@ static void ReadyProc(void)
 			DispDefCookTime(m_u8CookMode,m_u8DIYMode,m_u8FoodType);	
 			SetDefCookTemp(m_u8CookMode,m_u8DIYMode,m_u8FoodType);
 			tmCookTime[0] =	59;
-            tmCookTime[1] =	tmDefCookTime[1];	//Ä¬ÈÏÅëâ¿Ê±¼ä
+            tmCookTime[1] =	tmDefCookTime[1];	//é»˜è®¤çƒ¹é¥ªæ—¶é—´
 			tmCookTime[2] =	tmDefCookTime[2];
-			tmBookTime[0] =	59;					//ÇåÔ¤Ô¼Ê±¼ä
+			tmBookTime[0] =	59;					//æ¸…é¢„çº¦æ—¶é—´
 			tmBookTime[1] =	0;
 			tmBookTime[2] =	0;
 			u8CookTemp = DefCookTemp;			    
-			LEDDispCookMode(m_u8CookMode,m_u8DIYMode);	    //ÏÔÊ¾Åëâ¿Ä£Ê½
+			LEDDispCookMode(m_u8CookMode,m_u8DIYMode);	    //æ˜¾ç¤ºçƒ¹é¥ªæ¨¡å¼
 			m_u8DispDelayCnt = 60;
 			return;
 		}
@@ -287,11 +287,11 @@ static void ReadyProc(void)
         m_u8DispDelayCnt = 60;
     }
 	
-	g_u8HiTemp = 0;			//ÎÂ¶È·¶Î§ÎŞĞ§,²»¼ÓÈÈ
-	bTimeDisp_EN = 0;		//Ê±¼ä²»ÔÊĞíµ÷Õû
-	bTempDisp_EN = 0;		//ÎÂ¶È²»ÔÊĞíµ÷Õû
-	bBookTime_EN =	0;		//È¡ÏûÔ¤Ô¼
-	bCalBookTime_EN	= 0;	//È¡ÏûÔ¤Ô¼¼ÆËã
+	g_u8HiTemp = 0;			//æ¸©åº¦èŒƒå›´æ— æ•ˆ,ä¸åŠ çƒ­
+	bTimeDisp_EN = 0;		//æ—¶é—´ä¸å…è®¸è°ƒæ•´
+	bTempDisp_EN = 0;		//æ¸©åº¦ä¸å…è®¸è°ƒæ•´
+	bBookTime_EN =	0;		//å–æ¶ˆé¢„çº¦
+	bCalBookTime_EN	= 0;	//å–æ¶ˆé¢„çº¦è®¡ç®—
 
     if(m_u8DispDelayCnt>0)
     {
@@ -301,18 +301,18 @@ static void ReadyProc(void)
             EnterPowerDown();
             LEDDispPowerSaving(0);
             m_u16Movcnt = 0;
-            m_u8DispDelayCnt = 240; //ÑÓ³Ù4MIN½øÈëOFFÄ£Ê½
+            m_u8DispDelayCnt = 240; //å»¶è¿Ÿ4MINè¿›å…¥OFFæ¨¡å¼
         }
         else
         {
-	        LEDDispReady();		//´ı»úÏÔÊ¾"----"
+	        LEDDispReady();		//å¾…æœºæ˜¾ç¤º"----"
 	    }
 	}
 }
 
 /*-----------------------------------------------------------------------------*
  *  Function Description:                                                      *
- *      ÉèÖÃ×´Ì¬´¦Àí                                     					   *
+ *      è®¾ç½®çŠ¶æ€å¤„ç†                                     					   *
  *  Parameters:                                                                *
  *      None                                                                   *
  *  Return                                                                     *
@@ -328,9 +328,9 @@ static	void	SetupProc(void)
 
     if(g_u8KeyUpAct==VAL_KEY_CANCEL)
     {
-        if(bKeyPress==0)        //°´¼üÊÍ·Å
+        if(bKeyPress==0)        //æŒ‰é”®é‡Šæ”¾
         {
-            g_u8KeyUpAct = 0;   //Çå³ıÌ§ÆğÓĞĞ§¼üÖµ      
+            g_u8KeyUpAct = 0;   //æ¸…é™¤æŠ¬èµ·æœ‰æ•ˆé”®å€¼      
             EnterReady();
             return;
         }
@@ -338,7 +338,7 @@ static	void	SetupProc(void)
     
 	if(TstBit(u8Key,BIT_KEY_WARM))
 	{
-		if(g_u16KeyRpyCnt==36)						//³¤°´5S
+		if(g_u16KeyRpyCnt==36)						//é•¿æŒ‰5S
 		{
 		    g_u8KeyUpAct = 0;
 			bWarm_EN ^= 1;
@@ -361,7 +361,7 @@ static	void	SetupProc(void)
             SetCookModeByMenu();
 		}
 		
-		if((u8Key==VAL_KEY_MENU)&&(g_u16KeyRpyCnt==36))				//³¤°´5S						
+		if((u8Key==VAL_KEY_MENU)&&(g_u16KeyRpyCnt==36))				//é•¿æŒ‰5S						
 		{
 			bKeyMusic_EN ^= 1;
 			if(bKeyMusic_EN)
@@ -391,19 +391,19 @@ static	void	SetupProc(void)
 					LEDDispFoodType(m_u8FoodType);	
 					DispDefCookTime(m_u8CookMode,m_u8DIYMode,m_u8FoodType);	
 					SetDefCookTemp(m_u8CookMode,m_u8DIYMode,m_u8FoodType);	
-					tmCookTime[1] =	tmDefCookTime[1];	//Ä¬ÈÏÅëâ¿Ê±¼ä
+					tmCookTime[1] =	tmDefCookTime[1];	//é»˜è®¤çƒ¹é¥ªæ—¶é—´
 					tmCookTime[2] =	tmDefCookTime[2];
-					u8CookTemp = DefCookTemp;			//Ä¬ÈÏÅëâ¿ÎÂ¶È
+					u8CookTemp = DefCookTemp;			//é»˜è®¤çƒ¹é¥ªæ¸©åº¦
 				}          
 			}
 		}
 		else
 		{
-			if(bTimeDisp_EN==1)							//Åëâ¿Ê±¼äÊÇ·ñÔÊĞíµ÷Õû
+			if(bTimeDisp_EN==1)							//çƒ¹é¥ªæ—¶é—´æ˜¯å¦å…è®¸è°ƒæ•´
 			{
 				if((IsNewKey())||(g_u16KeyRpyCnt>15))
 				{
-					//ÅĞ¶ÏÅëâ¿Ê±¼äÊÇ·ñÒç³ö 
+					//åˆ¤æ–­çƒ¹é¥ªæ—¶é—´æ˜¯å¦æº¢å‡º 
 					if((tmCookTime[2]==tmMaxCookTime[2])&&(tmCookTime[1]==tmMaxCookTime[1]))
 					{
 						tmCookTime[2] =	tmMinCookTime[2];
@@ -427,16 +427,16 @@ static	void	SetupProc(void)
 							}
 						}	
 					}
-				    JudgeTimeValid();		//ÅĞ¶ÏÊ±¼äÊÇ·ñÔÚºÏÀí·¶Î§ÄÚ
+				    JudgeTimeValid();		//åˆ¤æ–­æ—¶é—´æ˜¯å¦åœ¨åˆç†èŒƒå›´å†…
 				    m_u8TimeDispCnt = 62;					
 				}
 			}	
 					
-			if(bBookTime_EN)			//Ô¤Ô¼Ê±¼äÊÇ·ñÔÊĞíµ÷Õû
+			if(bBookTime_EN)			//é¢„çº¦æ—¶é—´æ˜¯å¦å…è®¸è°ƒæ•´
 			{
 				if((IsNewKey())||(g_u16KeyRpyCnt>15))
 				{
-					//ÅĞ¶ÏÔ¤Ô¼Ê±¼äÊÇ·ñÒç³ö
+					//åˆ¤æ–­é¢„çº¦æ—¶é—´æ˜¯å¦æº¢å‡º
 					if((tmBookTime[2]==24)&&(tmBookTime[1]==0))
 					{
 						tmBookTime[2] =	tmMinBookTime[2];
@@ -447,15 +447,15 @@ static	void	SetupProc(void)
 						tmBookTime[1] = (tmBookTime[1]/5)*5+5;
 					}
 				}
-				JudgeTimeValid();		//ÅĞ¶ÏÊ±¼äÊÇ·ñÔÚºÏÀí·¶Î§ÄÚ
+				JudgeTimeValid();		//åˆ¤æ–­æ—¶é—´æ˜¯å¦åœ¨åˆç†èŒƒå›´å†…
 				m_u8TimeDispCnt = 62;
 			}
 			
-			if(bTempDisp_EN)			//ÎÂ¶ÈÊÇ·ñÔÊĞíµ÷Õû
+			if(bTempDisp_EN)			//æ¸©åº¦æ˜¯å¦å…è®¸è°ƒæ•´
 			{
 				if((IsNewKey())||((g_u16KeyRpyCnt>15)&&(g_u16KeyRpyCnt%3==0)))
 				{
-					//ÅĞ¶ÏÅëâ¿ÎÂ¶ÈÊÇ·ñÒç³ö
+					//åˆ¤æ–­çƒ¹é¥ªæ¸©åº¦æ˜¯å¦æº¢å‡º
 					if(u8CookTemp==MaxCookTemp)
 					{
 						u8CookTemp = MinCookTemp;
@@ -472,7 +472,7 @@ static	void	SetupProc(void)
 							u8CookTemp += 20;
 						}
 					}
-					JudgeTimeValid();	//ÅĞ¶ÏÎÂ¶ÈÊÇ·ñÔÚºÏÀí·¶Î§ÄÚ
+					JudgeTimeValid();	//åˆ¤æ–­æ¸©åº¦æ˜¯å¦åœ¨åˆç†èŒƒå›´å†…
 					m_u8TimeDispCnt = 62;
 				}			
 			}
@@ -493,19 +493,19 @@ static	void	SetupProc(void)
 					LEDDispFoodType(m_u8FoodType);	
 					DispDefCookTime(m_u8CookMode,m_u8DIYMode,m_u8FoodType);	
 					SetDefCookTemp(m_u8CookMode,m_u8DIYMode,m_u8FoodType);	
-					tmCookTime[1] =	tmDefCookTime[1];	//Ä¬ÈÏÅëâ¿Ê±¼ä
+					tmCookTime[1] =	tmDefCookTime[1];	//é»˜è®¤çƒ¹é¥ªæ—¶é—´
 					tmCookTime[2] =	tmDefCookTime[2];
-					u8CookTemp = DefCookTemp;			//Ä¬ÈÏÅëâ¿ÎÂ¶È					
+					u8CookTemp = DefCookTemp;			//é»˜è®¤çƒ¹é¥ªæ¸©åº¦					
 				}
 			}
 		}
 		else
 		{
-			if(bTimeDisp_EN==1)							//Åëâ¿Ê±¼äÊÇ·ñÔÊĞíµ÷Õû
+			if(bTimeDisp_EN==1)							//çƒ¹é¥ªæ—¶é—´æ˜¯å¦å…è®¸è°ƒæ•´
 			{
 				if((IsNewKey())||(g_u16KeyRpyCnt>15))
 				{
-					//ÅĞ¶ÏÅëâ¿Ê±¼äÊÇ·ñÒç³ö 
+					//åˆ¤æ–­çƒ¹é¥ªæ—¶é—´æ˜¯å¦æº¢å‡º 
 					if((tmCookTime[2]==tmMinCookTime[2])&&(tmCookTime[1]==tmMinCookTime[1]))
 					{
 						tmCookTime[2] =	tmMaxCookTime[2];
@@ -553,16 +553,16 @@ static	void	SetupProc(void)
 							}
 						}	
 					}
-					JudgeTimeValid();		//ÅĞ¶ÏÊ±¼äÊÇ·ñÔÚºÏÀí·¶Î§ÄÚ
+					JudgeTimeValid();		//åˆ¤æ–­æ—¶é—´æ˜¯å¦åœ¨åˆç†èŒƒå›´å†…
 					m_u8TimeDispCnt = 62;	
 				}
 			}
 
-			if(bBookTime_EN)				//Ô¤Ô¼Ê±¼äÊÇ·ñÔÊĞíµ÷Õû
+			if(bBookTime_EN)				//é¢„çº¦æ—¶é—´æ˜¯å¦å…è®¸è°ƒæ•´
 			{
 				if((IsNewKey())||(g_u16KeyRpyCnt>15))
 				{
-					//ÅĞ¶ÏÔ¤Ô¼Ê±¼äÊÇ·ñÒç³ö
+					//åˆ¤æ–­é¢„çº¦æ—¶é—´æ˜¯å¦æº¢å‡º
 					if((tmBookTime[2]==tmMinBookTime[2])&&(tmBookTime[1]==tmMinBookTime[1]))
 					{
 						tmBookTime[2] =	24;
@@ -581,15 +581,15 @@ static	void	SetupProc(void)
 						}	
 					}
 				}
-				JudgeTimeValid();		//ÅĞ¶ÏÊ±¼äÊÇ·ñÔÚºÏÀí·¶Î§ÄÚ
+				JudgeTimeValid();		//åˆ¤æ–­æ—¶é—´æ˜¯å¦åœ¨åˆç†èŒƒå›´å†…
 				m_u8TimeDispCnt = 62;
 			}
 		
-			if(bTempDisp_EN)			//ÎÂ¶ÈÊÇ·ñÔÊĞíµ÷Õû
+			if(bTempDisp_EN)			//æ¸©åº¦æ˜¯å¦å…è®¸è°ƒæ•´
 			{
 				if((IsNewKey())||((g_u16KeyRpyCnt>15)&&(g_u16KeyRpyCnt%3==0)))
 				{
-					//ÅĞ¶ÏÅëâ¿ÎÂ¶ÈÊÇ·ñÒç³ö
+					//åˆ¤æ–­çƒ¹é¥ªæ¸©åº¦æ˜¯å¦æº¢å‡º
 					if(u8CookTemp==MinCookTemp)
 					{
 						u8CookTemp = MaxCookTemp;
@@ -606,7 +606,7 @@ static	void	SetupProc(void)
 							u8CookTemp -= 20;
 						}
 					}
-					JudgeTimeValid();	//ÅĞ¶ÏÎÂ¶ÈÊÇ·ñÔÚºÏÀí·¶Î§ÄÚ
+					JudgeTimeValid();	//åˆ¤æ–­æ¸©åº¦æ˜¯å¦åœ¨åˆç†èŒƒå›´å†…
 					m_u8TimeDispCnt = 62;
 				}			
 			}
@@ -619,8 +619,8 @@ static	void	SetupProc(void)
 		{
 //            if((m_u8DIYMode==4)&&(m_u8DIYSwitch==0))
 //            {
-//                m_u8DIYSwitch = 1;          //ÏÈÇĞ»»µ½DIY1ÉèÖÃ
-//                u16DispDIYCnt = 250;        //ÏÔÊ¾DIY1 2S
+//                m_u8DIYSwitch = 1;          //å…ˆåˆ‡æ¢åˆ°DIY1è®¾ç½®
+//                u16DispDIYCnt = 250;        //æ˜¾ç¤ºDIY1 2S
 //            }
 
             if(u16DispDIYCnt==0)
@@ -631,9 +631,9 @@ static	void	SetupProc(void)
     				||(m_u8CookMode==FUNC_ID_OPORRIDGE)||(m_u8CookMode==FUNC_ID_REHEAT)||(m_u8CookMode==FUNC_ID_SOUP)
     				||((m_u8DIYMode>0)&&(m_u8CookMode==0)))
     				{
-    					bTempDisp_EN = 1;		//ÔÊĞíµ÷ÕûÎÂ¶È
-    					bTimeDisp_EN = 0;		//²»ÔÊĞíµ÷ÕûÅëâ¿Ê±¼ä
-    					bBookTime_EN = 0;	    //²»ÔÊĞíµ÷ÕûÔ¤Ô¼Ê±¼ä
+    					bTempDisp_EN = 1;		//å…è®¸è°ƒæ•´æ¸©åº¦
+    					bTimeDisp_EN = 0;		//ä¸å…è®¸è°ƒæ•´çƒ¹é¥ªæ—¶é—´
+    					bBookTime_EN = 0;	    //ä¸å…è®¸è°ƒæ•´é¢„çº¦æ—¶é—´
     					bCalBookTime_EN = 0;
     					m_u8TimeDispCnt = 62;
     					u8BlankCnt = 62;
@@ -643,9 +643,9 @@ static	void	SetupProc(void)
     			{
     				if((m_u8CookMode!=FUNC_ID_RICE)&&(m_u8CookMode!=FUNC_ID_PILAF))
     				{
-    					bTimeDisp_EN = 1;		//ÔÊĞíµ÷ÕûÅëâ¿Ê±¼ä
-    					bTempDisp_EN = 0;		//²»ÔÊĞíµ÷ÕûÎÂ¶È
-    					bBookTime_EN = 0;		//²»ÔÊĞíµ÷ÕûÔ¤Ô¼Ê±¼ä
+    					bTimeDisp_EN = 1;		//å…è®¸è°ƒæ•´çƒ¹é¥ªæ—¶é—´
+    					bTempDisp_EN = 0;		//ä¸å…è®¸è°ƒæ•´æ¸©åº¦
+    					bBookTime_EN = 0;		//ä¸å…è®¸è°ƒæ•´é¢„çº¦æ—¶é—´
     					bCalBookTime_EN = 0;	
     					m_u8TimeDispCnt = 62;
     					u8BlankCnt = 62;					
@@ -659,7 +659,7 @@ static	void	SetupProc(void)
 	{
 		if(IsNewKey())
 		{
-//		    if(m_u8DIYMode!=4)      //diy4²»ÄÜÔ¤Ô¼
+//		    if(m_u8DIYMode!=4)      //diy4ä¸èƒ½é¢„çº¦
 //		    {
 			if((m_u8CookMode!=FUNC_ID_FRY)&&(m_u8CookMode!=FUNC_ID_PASTA)&&(m_u8CookMode!=FUNC_ID_YOGHURT)
              &&(m_u8CookMode!=FUNC_ID_CHEESE)&&(m_u8CookMode!=FUNC_ID_DOUGH))
@@ -670,7 +670,7 @@ static	void	SetupProc(void)
     				{
     					if((m_u8CookMode==FUNC_ID_RICE)||(m_u8CookMode==FUNC_ID_PILAF))
     					{
-    						tmBookTime[1] =	50;				            //Ä¬ÈÏÔ¤Ô¼Ê±¼ä
+    						tmBookTime[1] =	50;				            //é»˜è®¤é¢„çº¦æ—¶é—´
     						tmBookTime[2] =	0;
     						tmMinBookTime[1] = 50;
     						tmMinBookTime[2] = 0;			
@@ -707,12 +707,12 @@ static	void	SetupProc(void)
             SetDIYModeByDIY(m_u8DIYMode,m_u8DIYSwitch);  
 		}
        
-		if((u8Key==VAL_KEY_DIY)&&(g_u16KeyRpyCnt==36))   //³¤°´DIY¼ü5S»Ö¸´Ä¬ÈÏÉèÖÃ
+		if((u8Key==VAL_KEY_DIY)&&(g_u16KeyRpyCnt==36))   //é•¿æŒ‰DIYé”®5Sæ¢å¤é»˜è®¤è®¾ç½®
 		{
-		    m_u8CookMode = 0;                   //Çå³ıÅëâ¿Ä£Ê½
+		    m_u8CookMode = 0;                   //æ¸…é™¤çƒ¹é¥ªæ¨¡å¼
 		    m_u8FoodType = 0;                   
 			DispDefCookTime(m_u8CookMode,m_u8DIYMode,m_u8FoodType);	
-			tmCookTime[1] =	tmDefCookTime[1];	//Ä¬ÈÏÅëâ¿Ê±¼ä
+			tmCookTime[1] =	tmDefCookTime[1];	//é»˜è®¤çƒ¹é¥ªæ—¶é—´
 			tmCookTime[2] =	tmDefCookTime[2];	
 			SetDefCookTemp(m_u8CookMode,m_u8DIYMode,m_u8FoodType);
 			u8CookTemp = DefCookTemp;
@@ -791,16 +791,16 @@ static	void	SetupProc(void)
 //                        tmDIY2CookTime[2] = tmCookTime[2];
 //                        u8DIY2CookTemp = u8CookTemp;             
 //                    } 
-//                    m_u8DIYCookStage = 1;                       //ÏÈÆô¶¯DIY1
-//                    m_u8CookMode = m_u8DIYCookMode[0];          //ÉèÖÃµ±Ç°Ä¬ÈÏÄ£Ê½
+//                    m_u8DIYCookStage = 1;                       //å…ˆå¯åŠ¨DIY1
+//                    m_u8CookMode = m_u8DIYCookMode[0];          //è®¾ç½®å½“å‰é»˜è®¤æ¨¡å¼
 //                    m_u8FoodType = m_u8DIYFoodType[0];
 //                    tmCookTime[1] = tmDIY1CookTime[1];
 //                    tmCookTime[2] = tmDIY1CookTime[2];
 //                    u8CookTemp = u8DIY1CookTemp;             
 //                }
-                m_u8SysID =	SYS_ID_RUN;				//ÏµÍ³½øÈëÅëâ¿×´Ì¬
+                m_u8SysID =	SYS_ID_RUN;				//ç³»ç»Ÿè¿›å…¥çƒ¹é¥ªçŠ¶æ€
     			SetCurScript(m_u8CookMode,m_u8DIYMode,u8CookTemp);
-    			bLEDComeback = 1;                   //»Ö¸´Õı³£¹¦ÄÜÏÔÊ¾
+    			bLEDComeback = 1;                   //æ¢å¤æ­£å¸¸åŠŸèƒ½æ˜¾ç¤º
     			u16DispDIYCnt = 0;                  //Not display DIY xx
     			if(m_u8DIYMode==1)                  //DIY1               
     			{
@@ -880,14 +880,14 @@ static	void	SetupProc(void)
         m_u8DispDelayCnt = 60;
     }
     
-	//»Ö¸´¹¤×÷×´Ì¬ÏÔÊ¾
+	//æ¢å¤å·¥ä½œçŠ¶æ€æ˜¾ç¤º
 	if(bLEDComeback)
 	{
 		bLEDComeback = 0;
 		bSysPwrOn = 1;
 	}
 
-	//»Ö¸´ÏÔÊ¾
+	//æ¢å¤æ˜¾ç¤º
 	if(bSysPwrOn)
 	{
         RestoreDispMenu();
@@ -911,7 +911,7 @@ static	void	SetupProc(void)
 //        }
 //    }
     
-	//Ê±¼ä&&ÎÂ¶ÈBlinking´¦Àí
+	//æ—¶é—´&&æ¸©åº¦Blinkingå¤„ç†
 	if((bTimeDisp_EN==1)||(bBookTime_EN==1)||(bTempDisp_EN==1))			
 	{		
 		m_u8TimeDispCnt++;
@@ -926,20 +926,20 @@ static	void	SetupProc(void)
 			if(bBookTime_EN==1)
 			{
 				bLED_Preset = 1;		
-				LEDDispTime(tmBookTime);//ÏÔÊ¾Ô¤Ô¼Ê±¼ä
+				LEDDispTime(tmBookTime);//æ˜¾ç¤ºé¢„çº¦æ—¶é—´
 		   	}
 			else
 			{
 				if(bTimeDisp_EN==1)
 				{
 					bLED_Timer = 1;					
-					LEDDispTime(tmCookTime);//ÏÔÊ¾Åëâ¿Ê±¼ä
+					LEDDispTime(tmCookTime);//æ˜¾ç¤ºçƒ¹é¥ªæ—¶é—´
 				}
 				else
 				{
 					if(bTempDisp_EN==1)
 					{
-						LEDDispTemp(u8CookTemp);//ÏÔÊ¾Åëâ¿ÎÂ¶È
+						LEDDispTemp(u8CookTemp);//æ˜¾ç¤ºçƒ¹é¥ªæ¸©åº¦
 					}
 				}
 			}
@@ -947,7 +947,7 @@ static	void	SetupProc(void)
 
 		if(m_u8TimeDispCnt==126)
 		{
-			m_u8TimeDispCnt	= u8BlankCnt; //¹¦ÄÜºÍÊı×ÖÍ¬²½ÉÁË¸
+			m_u8TimeDispCnt	= u8BlankCnt; //åŠŸèƒ½å’Œæ•°å­—åŒæ­¥é—ªçƒ
 		}
 
 		if(m_u8TimeDispCnt==0)
@@ -956,7 +956,7 @@ static	void	SetupProc(void)
 	  	}
 	}
 
-	//1·ÖÖÓÎŞ²Ù×÷,½øÈëPowerDownÄ£Ê½
+	//1åˆ†é’Ÿæ— æ“ä½œ,è¿›å…¥PowerDownæ¨¡å¼
 	if(bSys_1000MS)
 	{
 		if(m_u8DispDelayCnt>0)
@@ -968,12 +968,12 @@ static	void	SetupProc(void)
 			    EnterPowerDown();
                 LEDDispPowerSaving(0);
                 m_u16Movcnt = 0;
-                m_u8DispDelayCnt = 240; //ÑÓ³Ù4·ÖÖÓ½øÈëOFFÄ£Ê½
+                m_u8DispDelayCnt = 240; //å»¶è¿Ÿ4åˆ†é’Ÿè¿›å…¥OFFæ¨¡å¼
 			}
 		}	
 	}		
 	
-	//±£ÎÂON/OFFÏÔÊ¾±êÖ¾
+	//ä¿æ¸©ON/OFFæ˜¾ç¤ºæ ‡å¿—
 	if((m_u8CookMode==FUNC_ID_PASTA)||(m_u8CookMode==FUNC_ID_YOGHURT)||(m_u8CookMode==FUNC_ID_CHEESE)
     ||(m_u8CookMode==FUNC_ID_JAM)||(m_u8CookMode==FUNC_ID_DOUGH)||((m_u8DIYMode>0)&&(m_u8CookMode==0))||(bWarm_EN==0))
 	{
@@ -985,9 +985,9 @@ static	void	SetupProc(void)
 	}
 }
 
-//ÅĞ¶ÏÊ±¼äÊÇ·ñÒç³ö
-//ËµÃ÷£º¶ÔÓÚÅëâ¿Ê±¼ä£¬Èç¹ûÊ±¼ä´óÓÚ×î³¤µÄÅëâ¿Ê±¼ä£¬ÄÇÃ´ÉèÖÃÎª×îĞ¡µÄÅëâ¿Ê±¼ä
-//  	¶ÔÓÚÔ¤Ô¼Ê±¼ä£¬Èç¹ûÊ±¼ä´óÓÚ24:00£¬ÄÇÃ´ÉèÖÃÎªÅëâ¿Ê±¼ä
+//åˆ¤æ–­æ—¶é—´æ˜¯å¦æº¢å‡º
+//è¯´æ˜ï¼šå¯¹äºçƒ¹é¥ªæ—¶é—´ï¼Œå¦‚æœæ—¶é—´å¤§äºæœ€é•¿çš„çƒ¹é¥ªæ—¶é—´ï¼Œé‚£ä¹ˆè®¾ç½®ä¸ºæœ€å°çš„çƒ¹é¥ªæ—¶é—´
+//  	å¯¹äºé¢„çº¦æ—¶é—´ï¼Œå¦‚æœæ—¶é—´å¤§äº24:00ï¼Œé‚£ä¹ˆè®¾ç½®ä¸ºçƒ¹é¥ªæ—¶é—´
 static void JudgeTimeValid(void)
 {
 	if(bBookTime_EN)
@@ -1085,12 +1085,12 @@ static void JudgeTimeValid(void)
 
 
 
-//»Ö¸´Õı³£ÏÔÊ¾(²Ëµ¥¡¢Ê±¼ä¡¢¶¨Ê±ºÍÔ¤Ô¼)
+//æ¢å¤æ­£å¸¸æ˜¾ç¤º(èœå•ã€æ—¶é—´ã€å®šæ—¶å’Œé¢„çº¦)
 static void RestoreDispMenu(void)
 {   
     LEDClearFun();
-	LEDDispCookMode(m_u8CookMode,m_u8DIYMode);		//ÏÔÊ¾Åëâ¿Ä£Ê½
-	m_u8TimeDispCnt	= u8BlankCnt;		            //Ê¹ÉÁË¸Í¬²½	
+	LEDDispCookMode(m_u8CookMode,m_u8DIYMode);		//æ˜¾ç¤ºçƒ¹é¥ªæ¨¡å¼
+	m_u8TimeDispCnt	= u8BlankCnt;		            //ä½¿é—ªçƒåŒæ­¥	
 
 	if((m_u8CookMode==FUNC_ID_SOUP)||(m_u8CookMode==FUNC_ID_BAKE)||(m_u8CookMode==FUNC_ID_STEW)
 	||(m_u8CookMode==FUNC_ID_STEAM))
@@ -1138,7 +1138,7 @@ static void RestoreDispMenu(void)
 	}
 }
 
-//¸ù¾İÅëâ¿Ä£Ê½Ñ¡Ôñ²¢ÏÔÊ¾Åëâ¿Ê±¼ä
+//æ ¹æ®çƒ¹é¥ªæ¨¡å¼é€‰æ‹©å¹¶æ˜¾ç¤ºçƒ¹é¥ªæ—¶é—´
 static void	DispDefCookTime(uint8 CookMode,uint8 DIYMode,uint8 FoodType)
 {
 	uint8 index=0;
@@ -1209,14 +1209,14 @@ static void	DispDefCookTime(uint8 CookMode,uint8 DIYMode,uint8 FoodType)
 	tmMaxCookTime[1] = LOBYTE(MaxCookTime_Table[index]);
 	tmMinCookTime[2] = HIBYTE(MinCookTime_Table[index]);
 	tmMinCookTime[1] = LOBYTE(MinCookTime_Table[index]);
-	LEDDispTime(tmDefCookTime);	//ÏÔÊ¾Ä¬ÈÏÊ±¼ä
-	bTimeDisp_EN =0;			//²»ÔÊĞíµ÷ÕûÊ±¼ä
+	LEDDispTime(tmDefCookTime);	//æ˜¾ç¤ºé»˜è®¤æ—¶é—´
+	bTimeDisp_EN =0;			//ä¸å…è®¸è°ƒæ•´æ—¶é—´
 	bLED_Timer = 1;      	    //SET Timer
 	bLED_Dot1 =	1;				//SET Dot
 	bLED_Dot2 =	1;	
 }
 
-//¸ù¾İÅëâ¿Ä£Ê½ºÍÊ³ÎïÖÖÀàÑ¡ÔñÅëâ¿ÎÂ¶È
+//æ ¹æ®çƒ¹é¥ªæ¨¡å¼å’Œé£Ÿç‰©ç§ç±»é€‰æ‹©çƒ¹é¥ªæ¸©åº¦
 static void SetDefCookTemp(uint8 CookMode,uint8 DIYMode,uint8 FoodType)
 {
 	uint8 index=0;
@@ -1245,21 +1245,21 @@ static void SetDefCookTemp(uint8 CookMode,uint8 DIYMode,uint8 FoodType)
 	MinCookTemp = MinCookTemp_Table[index];	
 }
 
-//MENU¼üÉèÖÃCookMode
+//MENUé”®è®¾ç½®CookMode
 static  void    SetCookModeByMenu(void)
 {
     m_u8FoodType = 0;
-	bTimeDisp_EN = 0;				//Ê±¼ä²»ÔÊĞíµ÷Õû
-	bTempDisp_EN = 0;				//ÎÂ¶È²»ÔÊĞíµ÷Õû   
-	bBookTime_EN = 0;				//È¡ÏûÔ¤Ô¼
-	bCalBookTime_EN	= 0;			//È¡ÏûÔ¤Ô¼¼ÆËã
-	tmBookTime[0] =	59;	 			//ÇåÔ¤Ô¼Ê±¼ä
+	bTimeDisp_EN = 0;				//æ—¶é—´ä¸å…è®¸è°ƒæ•´
+	bTempDisp_EN = 0;				//æ¸©åº¦ä¸å…è®¸è°ƒæ•´   
+	bBookTime_EN = 0;				//å–æ¶ˆé¢„çº¦
+	bCalBookTime_EN	= 0;			//å–æ¶ˆé¢„çº¦è®¡ç®—
+	tmBookTime[0] =	59;	 			//æ¸…é¢„çº¦æ—¶é—´
 	tmBookTime[1] =	0;
 	tmBookTime[2] =	0;
-	tmCookTime[0] =	59;				//ÇåÅëâ¿Ê±¼ä
+	tmCookTime[0] =	59;				//æ¸…çƒ¹é¥ªæ—¶é—´
 	tmCookTime[1] =	0;
 	tmCookTime[2] =	0;	
-	u8CookTemp = 0;					//ÇåÅëâ¿ÎÂ¶È
+	u8CookTemp = 0;					//æ¸…çƒ¹é¥ªæ¸©åº¦
     LEDClearFun();	
 
     switch(m_u8CookMode)
@@ -1283,7 +1283,7 @@ static  void    SetCookModeByMenu(void)
 				LEDDispFoodType(m_u8FoodType);
 			}
 		    DispDefCookTime(m_u8CookMode,m_u8DIYMode,m_u8FoodType);	
-		    tmCookTime[1] =	tmDefCookTime[1];		//Ä¬ÈÏÅëâ¿Ê±¼ä
+		    tmCookTime[1] =	tmDefCookTime[1];		//é»˜è®¤çƒ¹é¥ªæ—¶é—´
 		    tmCookTime[2] =	tmDefCookTime[2];
 		    if((m_u8CookMode==FUNC_ID_BAKE)||(m_u8CookMode==FUNC_ID_FRY)||(m_u8CookMode==FUNC_ID_STEW)
             ||(m_u8CookMode==FUNC_ID_OPORRIDGE)||(m_u8CookMode==FUNC_ID_REHEAT)||(m_u8CookMode==FUNC_ID_SOUP))
@@ -1299,10 +1299,10 @@ static  void    SetCookModeByMenu(void)
 		default:
 			break;
 	}
-	LEDDispCookMode(m_u8CookMode,m_u8DIYMode);			//ÏÔÊ¾Åëâ¿Ä£Ê½
+	LEDDispCookMode(m_u8CookMode,m_u8DIYMode);			//æ˜¾ç¤ºçƒ¹é¥ªæ¨¡å¼
 }
 
-//DIY¼üÉèÖÃDIYMode
+//DIYé”®è®¾ç½®DIYMode
 static  void    SetDIYModeByDIY(uint8 diymode,uint8 diyswitch)
 {
     uint8 i,j;
@@ -1326,17 +1326,17 @@ static  void    SetDIYModeByDIY(uint8 diymode,uint8 diyswitch)
         }
 //    	u16DispDIYCnt = 250;        //Display DIY 2s
         u16DispDIYCnt = 0;
-    	bTimeDisp_EN = 0;           //²»ÔÊĞíµ÷ÕûÊ±¼ä  
-		bTempDisp_EN = 0;			//²»ÔÊĞíµ÷ÕûÎÂ¶È
-		bBookTime_EN = 0;			//È¡ÏûÔ¤Ô¼
-		bCalBookTime_EN	= 0;		//È¡ÏûÔ¤Ô¼¼ÆËã
-		tmBookTime[0] =	59;	 		//ÇåÔ¤Ô¼Ê±¼ä
+    	bTimeDisp_EN = 0;           //ä¸å…è®¸è°ƒæ•´æ—¶é—´  
+		bTempDisp_EN = 0;			//ä¸å…è®¸è°ƒæ•´æ¸©åº¦
+		bBookTime_EN = 0;			//å–æ¶ˆé¢„çº¦
+		bCalBookTime_EN	= 0;		//å–æ¶ˆé¢„çº¦è®¡ç®—
+		tmBookTime[0] =	59;	 		//æ¸…é¢„çº¦æ—¶é—´
 		tmBookTime[1] =	0;
 		tmBookTime[2] =	0;
-		tmCookTime[0] =	59;			//ÇåÅëâ¿Ê±¼ä
+		tmCookTime[0] =	59;			//æ¸…çƒ¹é¥ªæ—¶é—´
 		tmCookTime[1] =	0;
 		tmCookTime[2] =	0;	
-        u8CookTemp = 0;				//ÇåÅëâ¿ÎÂ¶È
+        u8CookTemp = 0;				//æ¸…çƒ¹é¥ªæ¸©åº¦
         m_u8CookMode = 0;
         m_u8FoodType = 0;
     	if(rEepromCache[j+EEP_DIY1_S0]==0xA5)
@@ -1381,7 +1381,7 @@ static  void    SetDIYModeByDIY(uint8 diymode,uint8 diyswitch)
             m_u8DIYFoodType[i] = 0;
     		DispDefCookTime(m_u8CookMode,m_u8DIYMode,m_u8FoodType);
             SetDefCookTemp(m_u8CookMode,m_u8DIYMode,m_u8FoodType);
-    		tmCookTime[1] =	tmDefCookTime[1];	//Ä¬ÈÏÅëâ¿Ê±¼ä
+    		tmCookTime[1] =	tmDefCookTime[1];	//é»˜è®¤çƒ¹é¥ªæ—¶é—´
     		tmCookTime[2] =	tmDefCookTime[2];	
     		u8CookTemp = DefCookTemp;	
             if(i==0)
@@ -1410,7 +1410,7 @@ static  void    SetDIYModeByDIY(uint8 diymode,uint8 diyswitch)
 }
 /*-----------------------------------------------------------------------------*
  *  Function Description:                                                      *
- *      ¹¤×÷×´Ì¬´¦Àí                                     					   *
+ *      å·¥ä½œçŠ¶æ€å¤„ç†                                     					   *
  *  Parameters:                                                                *
  *      None                                                                   *
  *  Return                                                                     *
@@ -1421,7 +1421,7 @@ static	void	RunProc(void)
 	uint8 u8Key;
 	u8Key =	GetKey();
 
-    //¿ªÊ¼¼ü°´ÏÂ´¦Àí
+    //å¼€å§‹é”®æŒ‰ä¸‹å¤„ç†
     if(TstBit(u8Key, BIT_KEY_START))
     {
         if(IsNewKey())
@@ -1433,7 +1433,7 @@ static	void	RunProc(void)
             }
             else
             {
-                if((bPowerAdjSt==1)||(rEepromCache[EEP_POWER_S0]!=0xA5))    //±£´æPower_value
+                if((bPowerAdjSt==1)||(rEepromCache[EEP_POWER_S0]!=0xA5))    //ä¿å­˜Power_value
                 {
                     rEepromCache[EEP_POWER_S0] = 0xA5;
                     rEepromCache[EEP_POWER_VAL] = power_value;
@@ -1446,12 +1446,12 @@ static	void	RunProc(void)
         }
     }
     
-	//È¡Ïû¼ü°´ÏÂ´¦Àí
+	//å–æ¶ˆé”®æŒ‰ä¸‹å¤„ç†
 	if(TstBit(u8Key,BIT_KEY_CANCEL))
 	{
 		if(IsNewKey())
 		{   
-		    if((bPowerAdjSt==1)||(rEepromCache[EEP_POWER_S0]!=0xA5))    //±£´æPower_value
+		    if((bPowerAdjSt==1)||(rEepromCache[EEP_POWER_S0]!=0xA5))    //ä¿å­˜Power_value
             {
                 rEepromCache[EEP_POWER_S0] = 0xA5;
                 rEepromCache[EEP_POWER_VAL] = power_value;
@@ -1463,14 +1463,14 @@ static	void	RunProc(void)
 		}
   	}
 	
-    //Timer¼ü°´ÏÂ´¦Àí
+    //Timeré”®æŒ‰ä¸‹å¤„ç†
 	if(TstBit(u8Key,BIT_KEY_TIMER))
 	{
 		if(IsNewKey())
 		{	
 		    if((u16DispDIYCnt==0)&&(bPowerAdjSt==0))      //no diy display and no power adjust              
             {
-        		if(bBookTime_EN==0)					//ÎŞÔ¤Ô¼
+        		if(bBookTime_EN==0)					//æ— é¢„çº¦
         		{
         		    if((m_u8CookMode!=FUNC_ID_RICE)&&(m_u8CookMode!=FUNC_ID_PILAF))
                     {
@@ -1482,18 +1482,18 @@ static	void	RunProc(void)
     				        ||(m_u8CookMode==FUNC_ID_OPORRIDGE)||(m_u8CookMode==FUNC_ID_REHEAT)||(m_u8CookMode==FUNC_ID_SOUP)
     				        ||((m_u8DIYMode>0)&&(m_u8CookMode==0)))
         				    {
-        					    bTempDisp_EN = 1;		//ÔÊĞíµ÷ÕûÎÂ¶È
-        					    bTimeDisp_EN = 0;		//²»ÔÊĞíµ÷ÕûÅëâ¿Ê±¼ä
+        					    bTempDisp_EN = 1;		//å…è®¸è°ƒæ•´æ¸©åº¦
+        					    bTimeDisp_EN = 0;		//ä¸å…è®¸è°ƒæ•´çƒ¹é¥ªæ—¶é—´
         				    }
         			    }
         			    else
         			    {
-        				    bTimeDisp_EN = 1;		//ÔÊĞíµ÷ÕûÅëâ¿Ê±¼ä
-        				    bTempDisp_EN = 0;		//²»ÔÊĞíµ÷ÕûÎÂ¶È			
+        				    bTimeDisp_EN = 1;		//å…è®¸è°ƒæ•´çƒ¹é¥ªæ—¶é—´
+        				    bTempDisp_EN = 0;		//ä¸å…è®¸è°ƒæ•´æ¸©åº¦			
         			    }
                     }
         		}
-                else                              //Ô¤Ô¼×´Ì¬ÏÔÊ¾ÎÂ¶È&Ê±¼ä
+                else                              //é¢„çº¦çŠ¶æ€æ˜¾ç¤ºæ¸©åº¦&æ—¶é—´
                 {
                     if((m_u8CookMode!=FUNC_ID_RICE)&&(m_u8CookMode!=FUNC_ID_PILAF))
                     {
@@ -1502,7 +1502,7 @@ static	void	RunProc(void)
     				    ||(m_u8CookMode==FUNC_ID_OPORRIDGE)||(m_u8CookMode==FUNC_ID_REHEAT)||(m_u8CookMode==FUNC_ID_SOUP)
     				    ||((m_u8DIYMode>0)&&(m_u8CookMode==0)))
         				{
-                            u8CHDispCnt[1]++;				  //Í¨µÀÏÔÊ¾¼ÆÊıÆ÷¼ÓÒ»
+                            u8CHDispCnt[1]++;				  //é€šé“æ˜¾ç¤ºè®¡æ•°å™¨åŠ ä¸€
                             if(u8CHDispCnt[1]>1)
                             {
                                 u8CHDispCnt[1] = 0;
@@ -1520,11 +1520,11 @@ static	void	RunProc(void)
 	
 	if(u8Key==VAL_KEY_PLUS)
 	{
-		if(bTimeDisp_EN==1)							//Åëâ¿Ê±¼äÊÇ·ñÔÊĞíµ÷Õû
+		if(bTimeDisp_EN==1)							//çƒ¹é¥ªæ—¶é—´æ˜¯å¦å…è®¸è°ƒæ•´
 		{
 			if((IsNewKey())||(g_u16KeyRpyCnt>15))
 			{
-				//ÅĞ¶ÏÅëâ¿Ê±¼äÊÇ·ñÒç³ö 
+				//åˆ¤æ–­çƒ¹é¥ªæ—¶é—´æ˜¯å¦æº¢å‡º 
 				if((tmCookTime[2]==tmMaxCookTime[2])&&(tmCookTime[1]==tmMaxCookTime[1]))
 				{
 					tmCookTime[2] =	tmMinCookTime[2];
@@ -1548,18 +1548,18 @@ static	void	RunProc(void)
 						}
 					}	
 				}
-				JudgeTimeValid();		//ÅĞ¶ÏÊ±¼äÊÇ·ñÔÚºÏÀí·¶Î§ÄÚ
+				JudgeTimeValid();		//åˆ¤æ–­æ—¶é—´æ˜¯å¦åœ¨åˆç†èŒƒå›´å†…
 				tmCookTime[0] = 59;
 				m_u8TimeDispCnt = 62;	
 				m_u8AutoRunCnt = 5;
 			}
 		}	
 					
-		if(bTempDisp_EN)			//ÎÂ¶ÈÊÇ·ñÔÊĞíµ÷Õû
+		if(bTempDisp_EN)			//æ¸©åº¦æ˜¯å¦å…è®¸è°ƒæ•´
 		{
 			if((IsNewKey())||((g_u16KeyRpyCnt>15)&&(g_u16KeyRpyCnt%3==0)))
 			{
-				//ÅĞ¶ÏÅëâ¿ÎÂ¶ÈÊÇ·ñÒç³ö
+				//åˆ¤æ–­çƒ¹é¥ªæ¸©åº¦æ˜¯å¦æº¢å‡º
 				if(u8CookTemp==MaxCookTemp)
 				{
 					u8CookTemp = MinCookTemp;
@@ -1576,7 +1576,7 @@ static	void	RunProc(void)
 						u8CookTemp += 20;
 					}
 				}
-				JudgeTimeValid();	//ÅĞ¶ÏÎÂ¶ÈÊÇ·ñÔÚºÏÀí·¶Î§ÄÚ
+				JudgeTimeValid();	//åˆ¤æ–­æ¸©åº¦æ˜¯å¦åœ¨åˆç†èŒƒå›´å†…
 				m_u8TimeDispCnt = 62;
 				m_u8AutoRunCnt = 5;
 			}
@@ -1597,11 +1597,11 @@ static	void	RunProc(void)
 
     if(u8Key==VAL_KEY_MINUS)
 	{
-		if(bTimeDisp_EN==1)							//Åëâ¿Ê±¼äÊÇ·ñÔÊĞíµ÷Õû
+		if(bTimeDisp_EN==1)							//çƒ¹é¥ªæ—¶é—´æ˜¯å¦å…è®¸è°ƒæ•´
 		{
 			if((IsNewKey())||(g_u16KeyRpyCnt>15))
 			{
-				//ÅĞ¶ÏÅëâ¿Ê±¼äÊÇ·ñÒç³ö 
+				//åˆ¤æ–­çƒ¹é¥ªæ—¶é—´æ˜¯å¦æº¢å‡º 
 				if((tmCookTime[2]==tmMinCookTime[2])&&(tmCookTime[1]==tmMinCookTime[1]))
 				{
 					tmCookTime[2] =	tmMaxCookTime[2];
@@ -1663,18 +1663,18 @@ static	void	RunProc(void)
 						}
 					}	
 				}
-				JudgeTimeValid();		//ÅĞ¶ÏÊ±¼äÊÇ·ñÔÚºÏÀí·¶Î§ÄÚ
+				JudgeTimeValid();		//åˆ¤æ–­æ—¶é—´æ˜¯å¦åœ¨åˆç†èŒƒå›´å†…
 				tmCookTime[0] = 59;
 				m_u8TimeDispCnt = 62;
 				m_u8AutoRunCnt = 5;
 			}
 		}
 
-		if(bTempDisp_EN)			//ÎÂ¶ÈÊÇ·ñÔÊĞíµ÷Õû
+		if(bTempDisp_EN)			//æ¸©åº¦æ˜¯å¦å…è®¸è°ƒæ•´
 		{
 			if((IsNewKey())||((g_u16KeyRpyCnt>15)&&(g_u16KeyRpyCnt%3==0)))
 			{
-				//ÅĞ¶ÏÅëâ¿ÎÂ¶ÈÊÇ·ñÒç³ö
+				//åˆ¤æ–­çƒ¹é¥ªæ¸©åº¦æ˜¯å¦æº¢å‡º
 				if(u8CookTemp==MinCookTemp)
 				{
 					u8CookTemp = MaxCookTemp;
@@ -1691,7 +1691,7 @@ static	void	RunProc(void)
 						u8CookTemp -= 20;
 					}
 				}
-				JudgeTimeValid();	//ÅĞ¶ÏÎÂ¶ÈÊÇ·ñÔÚºÏÀí·¶Î§ÄÚ
+				JudgeTimeValid();	//åˆ¤æ–­æ¸©åº¦æ˜¯å¦åœ¨åˆç†èŒƒå›´å†…
 				m_u8TimeDispCnt = 62;
 				m_u8AutoRunCnt = 5;
 			}			
@@ -1712,9 +1712,9 @@ static	void	RunProc(void)
 
     if(TstBit(u8Key,BIT_KEY_DIY))
     {
-        if((u8Key==VAL_KEY_DIY)&&(g_u16KeyRpyCnt==40))				//³¤°´6S	
+        if((u8Key==VAL_KEY_DIY)&&(g_u16KeyRpyCnt==40))				//é•¿æŒ‰6S	
         {
-            if(bBookTime_EN==0)					                    //ÎŞÔ¤Ô¼
+            if(bBookTime_EN==0)					                    //æ— é¢„çº¦
             {
                 if(m_u8CookMode==FUNC_ID_STEAM)
                 {
@@ -1748,13 +1748,13 @@ static	void	RunProc(void)
     }
     
 	#ifdef	DEBUG0
-	//¶¨Ê±¼ü°´ÏÂ´¦Àí
+	//å®šæ—¶é”®æŒ‰ä¸‹å¤„ç†
 	if(TstBit(u8Key,BIT_KEY_PRESET))
 	{
 		m_u8CurTimeDispCnt = 6;		
 		if(IsNewKey())
 		{
-			u8CHDispCnt[0]++;				//Í¨µÀÏÔÊ¾¼ÆÊıÆ÷¼ÓÒ»
+			u8CHDispCnt[0]++;				//é€šé“æ˜¾ç¤ºè®¡æ•°å™¨åŠ ä¸€
 			if(u8CHDispCnt[0]>=4)
 			{
 				u8CHDispCnt[0] = 0;
@@ -1763,7 +1763,7 @@ static	void	RunProc(void)
   	}
 	#endif
 	
-	//»Ö¸´¹¤×÷×´Ì¬ÏÔÊ¾
+	//æ¢å¤å·¥ä½œçŠ¶æ€æ˜¾ç¤º
 	if(bLEDComeback)
 	{
 		bLEDComeback = 0;
@@ -1799,7 +1799,7 @@ static	void	RunProc(void)
 	if(bSysPwrOn)
 	{
 		LEDClearFun();
-		LEDDispCookMode(m_u8CookMode,m_u8DIYMode);		//ÏÔÊ¾¹¦ÄÜÀ¸
+		LEDDispCookMode(m_u8CookMode,m_u8DIYMode);		//æ˜¾ç¤ºåŠŸèƒ½æ 
 	    if((m_u8CookMode==FUNC_ID_SOUP)||(m_u8CookMode==FUNC_ID_BAKE)||(m_u8CookMode==FUNC_ID_STEW)
 	    ||(m_u8CookMode==FUNC_ID_STEAM))
 		{
@@ -1809,12 +1809,12 @@ static	void	RunProc(void)
 
 	if(bBookTime_EN==0)
 	{
-		//ÎŞÔ¤Ô¼
-		bCookBySctEN = 1;		//ÔÊĞí¹¦ÄÜ½Å±¾ÔËĞĞ		
-		bHeatPwrReq = 1;        //ÎŞÔ¤Ô¼£¬´ò¿ª¼ÓÈÈ×Ü¿ª¹Ø
+		//æ— é¢„çº¦
+		bCookBySctEN = 1;		//å…è®¸åŠŸèƒ½è„šæœ¬è¿è¡Œ		
+		bHeatPwrReq = 1;        //æ— é¢„çº¦ï¼Œæ‰“å¼€åŠ çƒ­æ€»å¼€å…³
 		if((tmCookTime[0]==59)&&(tmCookTime[1]==0)&&(tmCookTime[2]==0))
 		{	
-			//ÎŞ¶¨Ê±£¬ÎŞÔ¤Ô¼
+			//æ— å®šæ—¶ï¼Œæ— é¢„çº¦
 			if(m_u8CurTimeDispCnt==0)
 			{
 				if(bSysPwrOn)
@@ -1823,7 +1823,7 @@ static	void	RunProc(void)
 					LEDDispMovie(0);	
 			  	}
 
-				//ÏÔÊ¾Ğı×ªÍ¼¿ò
+				//æ˜¾ç¤ºæ—‹è½¬å›¾æ¡†
 				m_u8MovCnt++;
 				if((m_u8MovCnt&0x0f)==15)
 				{
@@ -1858,7 +1858,7 @@ static	void	RunProc(void)
 		}
 		else	
 		{	
-			//ÓĞ¶¨Ê±£¬ÎŞÔ¤Ô¼
+			//æœ‰å®šæ—¶ï¼Œæ— é¢„çº¦
 			if((bTimeDisp_EN==1)||(bTempDisp_EN==1))			
 			{		
 				m_u8TimeDispCnt++;
@@ -1873,13 +1873,13 @@ static	void	RunProc(void)
 					if(bTimeDisp_EN==1)
 					{
 						bLED_Timer = 1;					
-						LEDDispTime(tmCookTime);	//ÏÔÊ¾Åëâ¿Ê±¼ä
+						LEDDispTime(tmCookTime);	//æ˜¾ç¤ºçƒ¹é¥ªæ—¶é—´
 					}
 					else
 					{
 						if(bTempDisp_EN==1)
 						{
-							LEDDispTemp(u8CookTemp);//ÏÔÊ¾Åëâ¿ÎÂ¶È
+							LEDDispTemp(u8CookTemp);//æ˜¾ç¤ºçƒ¹é¥ªæ¸©åº¦
 						}
 					}
 				}
@@ -1915,7 +1915,7 @@ static	void	RunProc(void)
 						    bLED_Dot2	^=	1;
                             if(bLED_Dot1)
                             {
-                                LEDDispTime(tmCookTime);//ÏÔÊ¾Åëâ¿Ê±¼ä  
+                                LEDDispTime(tmCookTime);//æ˜¾ç¤ºçƒ¹é¥ªæ—¶é—´  
                                 bLED_Timer = 1;			//SET Timer
 					            bLED_Preset	= 0;		//CLR Preset
 					            bLED_Temp = 0;			//CLR Temp
@@ -1940,9 +1940,9 @@ static	void	RunProc(void)
 						{
 //						    if((m_u8DIYMode==4)&&(m_u8DIYCookStage==1))
 //                            {
-//                                //ÔØÈëDIY4 Stage2²ÎÊı
-//                                m_u8DIYCookStage = 2;                       //Æô¶¯DIY2
-//                                m_u8CookMode = m_u8DIYCookMode[1];          //ÔØÈëDIY2²ÎÊı
+//                                //è½½å…¥DIY4 Stage2å‚æ•°
+//                                m_u8DIYCookStage = 2;                       //å¯åŠ¨DIY2
+//                                m_u8CookMode = m_u8DIYCookMode[1];          //è½½å…¥DIY2å‚æ•°
 //                                m_u8FoodType = m_u8DIYFoodType[1];
 //                                tmCookTime[1] = tmDIY2CookTime[1];
 //                                tmCookTime[2] = tmDIY2CookTime[2];
@@ -1951,7 +1951,7 @@ static	void	RunProc(void)
 //                                bTimeDisp_EN = 0;		
 //    			                bTempDisp_EN = 0;			
 //    			                m_u8AutoRunCnt = 0;
-//                                bLEDComeback = 1;                           //»Ö¸´DIY2ÏÔÊ¾
+//                                bLEDComeback = 1;                           //æ¢å¤DIY2æ˜¾ç¤º
 //                            }
 //                            else
 //                            {
@@ -2026,17 +2026,17 @@ static	void	RunProc(void)
 	}
 	else
 	{
-	    //ÓĞÔ¤Ô¼
-	    bHeatPwrReq = 0;        //¹ØËùÓĞ¼ÓÈÈ
+	    //æœ‰é¢„çº¦
+	    bHeatPwrReq = 0;        //å…³æ‰€æœ‰åŠ çƒ­
 
 		if(bCalBookTime_EN)
 		{
-			bCalBookTime_EN	=	0;			//ÇåÔ¤Ô¼¼ÆËã
+			bCalBookTime_EN	=	0;			//æ¸…é¢„çº¦è®¡ç®—
 
 			tmIntCookTime[2]	=	tmBookTime[2];
 			tmIntCookTime[1]	=	tmBookTime[1];
 
-			//¼ÆËãÅëâ¿ĞèÒªµÄÊ±¼ä
+			//è®¡ç®—çƒ¹é¥ªéœ€è¦çš„æ—¶é—´
 			tmCalCookTime[2]	=	tmCookTime[2];
 			tmCalCookTime[1]	=	tmCookTime[1];
 			if((tmCookTime[0]==59)&&(tmCookTime[1]==0)&&(tmCookTime[2]==0))
@@ -2045,11 +2045,11 @@ static	void	RunProc(void)
 				tmCalCookTime[1]	=	50;
 			}
 
-			//¼ä¸ôÊ±¼äÊÇ·ñÂú×ãÅëâ¿ËùĞèÊ±¼ä
+			//é—´éš”æ—¶é—´æ˜¯å¦æ»¡è¶³çƒ¹é¥ªæ‰€éœ€æ—¶é—´
 			if(tmIntCookTime[2]<tmCalCookTime[2])
 			{
-				bBookTime_EN	=	0;			//¼ä¸ôÊ±¼äĞ¡ÓÚÅëâ¿Ê±¼ä£¬È¡ÏûÔ¤Ô¼
-				bLEDComeback	=	1;			//»Ö¸´Õı³£Åëâ¿ÏÔÊ¾
+				bBookTime_EN	=	0;			//é—´éš”æ—¶é—´å°äºçƒ¹é¥ªæ—¶é—´ï¼Œå–æ¶ˆé¢„çº¦
+				bLEDComeback	=	1;			//æ¢å¤æ­£å¸¸çƒ¹é¥ªæ˜¾ç¤º
 		  	}
 			else	
 			{
@@ -2057,8 +2057,8 @@ static	void	RunProc(void)
 				{
 					if(tmIntCookTime[1]<=tmCalCookTime[1])
 					{
-						bBookTime_EN	=	0;			//¼ä¸ôÊ±¼äĞ¡ÓÚÅëâ¿Ê±¼ä£¬È¡ÏûÔ¤Ô¼
-						bLEDComeback	=	1;			//»Ö¸´Õı³£Åëâ¿ÏÔÊ¾
+						bBookTime_EN	=	0;			//é—´éš”æ—¶é—´å°äºçƒ¹é¥ªæ—¶é—´ï¼Œå–æ¶ˆé¢„çº¦
+						bLEDComeback	=	1;			//æ¢å¤æ­£å¸¸çƒ¹é¥ªæ˜¾ç¤º
 					}
 				}
 		  	}
@@ -2067,9 +2067,9 @@ static	void	RunProc(void)
 		{
 			if((tmCalCookTime[2]==tmBookTime[2])&&(tmCalCookTime[1]==tmBookTime[1]))
 			{
-				//Åëâ¿¿ªÊ¼Ê±¼ä==µ±Ç°Ê±¼ä
-				bBookTime_EN	=	0;				//Ô¤Ô¼±êÖ¾È¡Ïû
-				bLEDComeback	=	1;				//»Ö¸´µ½Åëâ¿×´Ì¬ÏÔÊ¾
+				//çƒ¹é¥ªå¼€å§‹æ—¶é—´==å½“å‰æ—¶é—´
+				bBookTime_EN	=	0;				//é¢„çº¦æ ‡å¿—å–æ¶ˆ
+				bLEDComeback	=	1;				//æ¢å¤åˆ°çƒ¹é¥ªçŠ¶æ€æ˜¾ç¤º
 		  	}
 		}
 
@@ -2083,7 +2083,7 @@ static	void	RunProc(void)
 
         if(m_u8CurTimeDispCnt==0)
         {
-		    //ÏÔÊ¾Ô¤Ô¼Ê±¼ä
+		    //æ˜¾ç¤ºé¢„çº¦æ—¶é—´
     		LEDDispTime(tmBookTime);
     		bLED_Timer = 0;	 			//CLR Timer
     		bLED_Temp = 0;
@@ -2102,7 +2102,7 @@ static	void	RunProc(void)
             }
             if(u8CHDispCnt[1]==1)       //Display Cooktemp
             {
-                LEDDispTemp(u8CookTemp);//ÏÔÊ¾Åëâ¿ÎÂ¶È
+                LEDDispTemp(u8CookTemp);//æ˜¾ç¤ºçƒ¹é¥ªæ¸©åº¦
             }
         }
 	}
@@ -2119,7 +2119,7 @@ static	void	RunProc(void)
 //        }
 //    }
 
-    if(bPowerAdjSt)             //µ÷¹¦Ê±ÊıÂë¹ÜÏÔÊ¾power_value
+    if(bPowerAdjSt)             //è°ƒåŠŸæ—¶æ•°ç ç®¡æ˜¾ç¤ºpower_value
     {
         LEDDispTemp(power_value);
         bLED_Temp = 0;			//CLR Temp  
@@ -2128,7 +2128,7 @@ static	void	RunProc(void)
 
 /*-----------------------------------------------------------------------------*
  *  Function Description:                                                      *
- *      ±£ÎÂ×´Ì¬´¦Àí                                     					   *
+ *      ä¿æ¸©çŠ¶æ€å¤„ç†                                     					   *
  *  Parameters:                                                                *
  *      None                                                                   *
  *  Return                                                                     *
@@ -2141,7 +2141,7 @@ static	void	WarmProc(void)
 
 	u8Key =	GetKey();
 
-    bHeatPwrReq =   1;      //±£ÎÂ×´Ì¬ÏÂ£¬´ò¿ª¼ÓÈÈ×Ü¿ª¹Ø
+    bHeatPwrReq =   1;      //ä¿æ¸©çŠ¶æ€ä¸‹ï¼Œæ‰“å¼€åŠ çƒ­æ€»å¼€å…³
     
 	if(m_u8ChkCnt<6)
 	{
@@ -2217,7 +2217,7 @@ static	void	WarmProc(void)
 			
 /*-----------------------------------------------------------------------------*
  *  Function Description:                                                      *
- *      ÏµÍ³±¨¾¯×´Ì¬´¦Àí                                     				   *
+ *      ç³»ç»ŸæŠ¥è­¦çŠ¶æ€å¤„ç†                                     				   *
  *  Parameters:                                                                *
  *      None                                                                   *
  *  Return                                                                     *
@@ -2243,7 +2243,7 @@ static	void	ErrorProc(void)
 	
 	if(g_u8ErrorType==0)			
 	{
-		//±¨¾¯½â³ı
+		//æŠ¥è­¦è§£é™¤
 		m_u8SysID =	m_u8PrevSysID;
 		bLEDComeback = 1;
 		PlaySound(MusicKeyDown);
@@ -2255,7 +2255,7 @@ static	void	ErrorProc(void)
 
 /*-----------------------------------------------------------------------------*
  *  Function Description:                                                      *
- *      ÏµÍ³OFFÄ£Ê½,¹Ø±ÕËùÓĞ¼ÓÈÈºÍÏÔÊ¾                                         *
+ *      ç³»ç»ŸOFFæ¨¡å¼,å…³é—­æ‰€æœ‰åŠ çƒ­å’Œæ˜¾ç¤º                                         *
  *  Parameters:                                                                *
  *      None                                                                   *
  *  Return                                                                     *
@@ -2266,7 +2266,7 @@ static void PowerDownProc(void)
     uint8 u8Key;	
 	u8Key = GetKey(); 
 
-    if(u8Key>0)         //°´ÏÂÈÎºÎ¼ü»½ĞÑ½øÈë´ı»ú
+    if(u8Key>0)         //æŒ‰ä¸‹ä»»ä½•é”®å”¤é†’è¿›å…¥å¾…æœº
     {
         if(IsNewKey())
         {
@@ -2281,7 +2281,7 @@ static void PowerDownProc(void)
         if(bSys_1000MS) m_u8DispDelayCnt--;
         if(m_u8DispDelayCnt==0)
         {
-            LEDDispAll(0);      //¹Ø±ÕËùÓĞÏÔÊ¾
+            LEDDispAll(0);      //å…³é—­æ‰€æœ‰æ˜¾ç¤º
         }
         else
         {
@@ -2299,16 +2299,16 @@ static void PowerDownProc(void)
     }
     else
     {
-        LEDDispAll(0);      //¹Ø±ÕËùÓĞÏÔÊ¾
-        bHeatPwrReq = 0;    //¹ØËùÓĞ¼ÓÈÈ
+        LEDDispAll(0);      //å…³é—­æ‰€æœ‰æ˜¾ç¤º
+        bHeatPwrReq = 0;    //å…³æ‰€æœ‰åŠ çƒ­
         g_u8HiTemp = 0;
-        bHeatTopReq	=	0;  //¹Ø±Õ¼ÓÈÈ
+        bHeatTopReq	=	0;  //å…³é—­åŠ çƒ­
     }
 }
 
 /*-----------------------------------------------------------------------------*
  *  Function Description:                                                      *
- *      ÏµÍ³×Ô¼ì×´Ì¬´¦Àí                                     				   *
+ *      ç³»ç»Ÿè‡ªæ£€çŠ¶æ€å¤„ç†                                     				   *
  *  Parameters:                                                                *
  *      None                                                                   *
  *  Return                                                                     *
@@ -2407,8 +2407,8 @@ static	void	SelfCheckProc(void)
                 }
                 if(m_u8SelfChkStep==12)
                 {
-                    bHeatPwrReq = 0;        //¹ØËùÓĞ¼ÓÈÈ
-                    g_u8HiTemp = 0;	        //Í£Ö¹¼ÓÈÈ	
+                    bHeatPwrReq = 0;        //å…³æ‰€æœ‰åŠ çƒ­
+                    g_u8HiTemp = 0;	        //åœæ­¢åŠ çƒ­	
                     bHeatTopReq	=	0;
                     g_u8OnTime_Set = 0;
                     PlaySound(MusicPoweron);
@@ -2422,10 +2422,10 @@ static	void	SelfCheckProc(void)
     }
 }
 
-/*-------------------------------×´Ì¬Èë¿Ú³ÌĞò----------------------------------*
+/*-------------------------------çŠ¶æ€å…¥å£ç¨‹åº----------------------------------*
 /*-----------------------------------------------------------------------------*
  *  Function Description:                                                      *
- *      ½øÈë¸´Î»Ä£Ê½                                     				       *
+ *      è¿›å…¥å¤ä½æ¨¡å¼                                     				       *
  *  Parameters:                                                                *
  *      None                                                                   *
  *  Return                                                                     *
@@ -2442,14 +2442,14 @@ void	EnterReset(void)
         rEepromCache[i] = *p_EepRom;    //Read data form Eeprom to cache
         p_EepRom++;
     }	
-	bKeyMusic_EN = 0;                  //¸´Î»ÖĞ¹Ø±Õ°´¼üÉùÒô
+	bKeyMusic_EN = 0;                  //å¤ä½ä¸­å…³é—­æŒ‰é”®å£°éŸ³
 	m_u8SysID =	SYS_ID_RESET;
 	bSys_1000MS	= 0;
     u16PoweronCnt = 320;         
 	bWarm_EN = 1;	
     if(rEepromCache[EEP_POWER_S0]==0xA5)
     {
-        power_value = rEepromCache[EEP_POWER_VAL];  //¶ÁÈ¡Power_value
+        power_value = rEepromCache[EEP_POWER_VAL];  //è¯»å–Power_value
     }
     else
     {
@@ -2460,7 +2460,7 @@ void	EnterReset(void)
 
 /*-----------------------------------------------------------------------------*
  *  Function Description:                                                      *
- *      ½øÈë´ı»úÄ£Ê½                                     				       *
+ *      è¿›å…¥å¾…æœºæ¨¡å¼                                     				       *
  *  Parameters:                                                                *
  *      None                                                                   *
  *  Return                                                                     *
@@ -2468,20 +2468,20 @@ void	EnterReset(void)
  *----------------------------------------------------------------------------*/
 void	EnterReady(void)
 {
-	m_u8SysID =	SYS_ID_READY;					//ÏµÍ³½øÈë´ı»ú×´Ì¬
-	ResetCurScript();							//½ûÖ¹ScriptÔËĞĞ
-	bHeatPwrReq =   0;                              //¹ØËùÓĞ¼ÓÈÈ
-	g_u8HiTemp = 0;								//Í£Ö¹¼ÓÈÈ	
-	bHeatTopReq	=	0;						    //¹Ø±Õ¶¥¼ÓÈÈ
+	m_u8SysID =	SYS_ID_READY;					//ç³»ç»Ÿè¿›å…¥å¾…æœºçŠ¶æ€
+	ResetCurScript();							//ç¦æ­¢Scriptè¿è¡Œ
+	bHeatPwrReq =   0;                              //å…³æ‰€æœ‰åŠ çƒ­
+	g_u8HiTemp = 0;								//åœæ­¢åŠ çƒ­	
+	bHeatTopReq	=	0;						    //å…³é—­é¡¶åŠ çƒ­
 		
-	tmCookTime[0] =	59;							//ÇåÅëâ¿Ê±¼ä
+	tmCookTime[0] =	59;							//æ¸…çƒ¹é¥ªæ—¶é—´
 	tmCookTime[1] =	0;
 	tmCookTime[2] =	0;
-	tmBookTime[0] =	59;	  						//ÇåÔ¤Ô¼Ê±¼ä
+	tmBookTime[0] =	59;	  						//æ¸…é¢„çº¦æ—¶é—´
 	tmBookTime[1] =	0;
 	tmBookTime[2] =	0;
-	m_u8ChkCnt = 0;								//Çå×Ô¼ì¼ÆÊıÆ÷
-	g_u8ErrorType =	0;							//Çå±¨¾¯ÀàĞÍ
+	m_u8ChkCnt = 0;								//æ¸…è‡ªæ£€è®¡æ•°å™¨
+	g_u8ErrorType =	0;							//æ¸…æŠ¥è­¦ç±»å‹
 
 	bBookTime_EN = 0;
 	bTempDisp_EN = 0;
@@ -2509,7 +2509,7 @@ void	EnterReady(void)
 
 /*-----------------------------------------------------------------------------*
  *  Function Description:                                                      *
- *      ½øÈë±£ÎÂÄ£Ê½                                     				       *
+ *      è¿›å…¥ä¿æ¸©æ¨¡å¼                                     				       *
  *  Parameters:                                                                *
  *      None                                                                   *
  *  Return                                                                     *
@@ -2518,25 +2518,25 @@ void	EnterReady(void)
 void	EnterWarm(void)
 {
 	m_u8SysID =	SYS_ID_WARM;
-	ResetCurScript();							//½ûÖ¹ScriptÔËĞĞ
-	bHeatPwrReq =   0;                          //¹ØËùÓĞ¼ÓÈÈ
+	ResetCurScript();							//ç¦æ­¢Scriptè¿è¡Œ
+	bHeatPwrReq =   0;                          //å…³æ‰€æœ‰åŠ çƒ­
 	g_u8HiTemp = 0;		
-    bHeatTopReq	=	0;						    //¹Ø±Õ¶¥¼ÓÈÈ
-	tmCookTime[0] =	0;							//ÇåÅëâ¿Ê±¼ä
+    bHeatTopReq	=	0;						    //å…³é—­é¡¶åŠ çƒ­
+	tmCookTime[0] =	0;							//æ¸…çƒ¹é¥ªæ—¶é—´
 	tmCookTime[1] =	0;
 	tmCookTime[2] =	0;
 	bBookTime_EN = 0;
 	bCalBookTime_EN	= 0;
-	bTimeDisp_EN = 0;    						//Ê±¼ä²»ÔÊĞíµ÷Õû
+	bTimeDisp_EN = 0;    						//æ—¶é—´ä¸å…è®¸è°ƒæ•´
 	bTempDisp_EN = 0;
-	m_u8ChkCnt = 0;								//Çå×Ô¼ì¼ÆÊıÆ÷
+	m_u8ChkCnt = 0;								//æ¸…è‡ªæ£€è®¡æ•°å™¨
 	LEDClearFun();
 	LEDDispTime(tmCookTime);
 }
 
 /*-----------------------------------------------------------------------------*
  *  Function Description:                                                      *
- *      ½øÈë¹Ø»úÄ£Ê½                                    				       *
+ *      è¿›å…¥å…³æœºæ¨¡å¼                                    				       *
  *  Parameters:                                                                *
  *      None                                                                   *
  *  Return                                                                     *
@@ -2545,18 +2545,18 @@ void	EnterWarm(void)
  void   EnterPowerDown(void)
  {
     m_u8SysID = SYS_ID_POWRDOWN;
-    ResetCurScript();               //½ûÖ¹ScriptÔËĞĞ
-    bHeatPwrReq =   0;              //¹ØËùÓĞ¼ÓÈÈ
+    ResetCurScript();               //ç¦æ­¢Scriptè¿è¡Œ
+    bHeatPwrReq =   0;              //å…³æ‰€æœ‰åŠ çƒ­
     g_u8HiTemp = 0;
-    bHeatTopReq	=	0;			    //¹Ø±Õ¶¥¼ÓÈÈ
-	m_u8DispDelayCnt = 0;           //½øÈëOFFÄ£Ê½
+    bHeatTopReq	=	0;			    //å…³é—­é¡¶åŠ çƒ­
+	m_u8DispDelayCnt = 0;           //è¿›å…¥OFFæ¨¡å¼
     LEDClearFun();
  }
-/*-------------------------------¹ÊÕÏ¼ì²â³ÌĞò----------------------------------*
+/*-------------------------------æ•…éšœæ£€æµ‹ç¨‹åº----------------------------------*
 
 /*-----------------------------------------------------------------------------*
  *  Function Description:                                                      *
- *      ¹ÊÕÏ¼ì²â                                      		   				   *
+ *      æ•…éšœæ£€æµ‹                                      		   				   *
  *  Parameters:                                                                *
  *      None                                                                   *
  *  Return                                                                     *
@@ -2610,7 +2610,7 @@ void	FaultCheckProc(void)
 //			}
 //			else
 //			{
-//				if(m_u8ChkCnt<60)					//µ½ÎÂ¶ÈµãºóÑÓ³ÙÌáÊ¾
+//				if(m_u8ChkCnt<60)					//åˆ°æ¸©åº¦ç‚¹åå»¶è¿Ÿæç¤º
 //				{
 //					if(bSys_1000MS)	m_u8ChkCnt++;
 //                    bHeatTopReq = 1;                
@@ -2634,7 +2634,7 @@ void	FaultCheckProc(void)
 		}	
 	}
 
-    //¸ÉÉÕ
+    //å¹²çƒ§
     if(bCookBySctEN==1)
 	{   
 	    if(bSys_1000MS)
@@ -2659,14 +2659,14 @@ void	FaultCheckProc(void)
 
 	if((m_u8SysID==SYS_ID_CHECK)||(m_u8SysID==SYS_ID_ERROR)||(bCookBySctEN==1)||(m_u8SysID==SYS_ID_WARM))
 	{
-	    //ÈÈÃôµç×è¿ª¶ÌÂ·
+	    //çƒ­æ•ç”µé˜»å¼€çŸ­è·¯
 		if((adBotData<3)||(adBotData>252))	bBotSensorErr=1;
 		else    bBotSensorErr=0;	
 		if((adTopData<3)||(adTopData>252))	bTopSensorErr=1;
 		else    bTopSensorErr=0;	
 	
 
-        //ÅĞ¹ø
+        //åˆ¤é”…
         if(TstBit(IHStatus,4))
         {
             u8NoPanCnt++;
@@ -2683,7 +2683,7 @@ void	FaultCheckProc(void)
         }
     
 
-        //IGBT¹ıÈÈ
+        //IGBTè¿‡çƒ­
         if(IGBTValue>=90)
         {
             bIGBTOverTempErr = 1;
@@ -2696,7 +2696,7 @@ void	FaultCheckProc(void)
             }
         }
 
-        //IGBTÈÈÃôµç×è¿ªÂ·
+        //IGBTçƒ­æ•ç”µé˜»å¼€è·¯
         if(bSys_1000MS)
         {
             if(IGBTValue<3)
@@ -2715,7 +2715,7 @@ void	FaultCheckProc(void)
             }
         }
         
-        //µçÑ¹¹ı¸ß»ò¹ıµÍ
+        //ç”µå‹è¿‡é«˜æˆ–è¿‡ä½
         if((VoltageValue>=205)||(VoltageValue<=115))
         {
             u8VoltageCnt++;
@@ -2740,15 +2740,15 @@ void	FaultCheckProc(void)
 			m_u8SysID = SYS_ID_ERROR;
             if(bNoPanErr==1)
             {
-                PlaySound(MusicSysErrorNoPan);      //¿ªÎŞ¹ø±¨¾¯ÉùÒô
+                PlaySound(MusicSysErrorNoPan);      //å¼€æ— é”…æŠ¥è­¦å£°éŸ³
             }
             else
             {
-			    PlaySound(MusicSysError); 	        //¿ª±¨¾¯ÉùÒô		
+			    PlaySound(MusicSysError); 	        //å¼€æŠ¥è­¦å£°éŸ³		
 		    }
-			bHeatPwrReq =   0;                      //¹ØËùÓĞ¼ÓÈÈ
+			bHeatPwrReq =   0;                      //å…³æ‰€æœ‰åŠ çƒ­
 			g_u8HiTemp	=	0;
-            bHeatTopReq	=	0;					    //¹Ø±Õ¶¥¼ÓÈÈ
+            bHeatTopReq	=	0;					    //å…³é—­é¡¶åŠ çƒ­
 		}
  	}
 }
@@ -2775,10 +2775,10 @@ void    AutotestActivate(void)
                 if(m_u8SysID!=SYS_ID_CHECK)
                 {
                     m_u8SysID = SYS_ID_CHECK;
-                    ResetCurScript();							//½ûÖ¹ScriptÔËĞĞ
-	                bHeatPwrReq =   0;                          //¹ØËùÓĞ¼ÓÈÈ
-	                g_u8HiTemp = 0;								//Í£Ö¹¼ÓÈÈ	
-	                bHeatTopReq	=	0;						    //¹Ø±Õ¶¥¼ÓÈÈ
+                    ResetCurScript();							//ç¦æ­¢Scriptè¿è¡Œ
+	                bHeatPwrReq =   0;                          //å…³æ‰€æœ‰åŠ çƒ­
+	                g_u8HiTemp = 0;								//åœæ­¢åŠ çƒ­	
+	                bHeatTopReq	=	0;						    //å…³é—­é¡¶åŠ çƒ­
 			        m_u8SelfChkStep = 0;
                     PlaySound(MusicKeyDown);
                 }

@@ -45,11 +45,11 @@ uint8	m_u8KeyVal;
 
  /*-----------------------------------------------------------------------------*
   *  Function Description:                                                      *
-  *      ´ÓIO¿ÚÉÏ¶ÁÈ¡¼üÖµ                                                       *
+  *      ä»IOå£ä¸Šè¯»å–é”®å€¼                                                       *
   *  Parameters:                                                                *
   *      None                                                                   *
   *  Return                                                                     *
-  *      ¼üÖµ                                                                   *
+  *      é”®å€¼                                                                   *
   *----------------------------------------------------------------------------*/
 uint8  GetKeyVal(void)
 {
@@ -57,13 +57,13 @@ uint8  GetKeyVal(void)
     
 	m_u8KeyVal	=  0x00;	
 	cli();
-	//¹Ø±ÕÏÔÊ¾
+	//å…³é—­æ˜¾ç¤º
     P1 &= 0x87;                         //all segment off
     P3 &= 0xC0;							
 	P1 |= 0x80;							//all com off
 	P2 |= 0x3F;	
 
-	//ÉèÖÃÉ¨¼üIOÉÏÀ­ÊäÈë²¢ÖÃÒ»
+	//è®¾ç½®æ‰«é”®IOä¸Šæ‹‰è¾“å…¥å¹¶ç½®ä¸€
     P1IO = 0x89;        //direction
     P1PU = 0x76;        //pullup
     P1 |= 0x76;        
@@ -99,7 +99,7 @@ uint8  GetKeyVal(void)
 	if((P1&(1<<4))==0) m_u8KeyVal |= (1<<6);		//"Temperature/Time"   
 	if((P1&(1<<2))==0) m_u8KeyVal |= (1<<7);		//"Keep Warm/Cancel"
 	
-	//»Ö¸´ÏÔÊ¾
+	//æ¢å¤æ˜¾ç¤º
 	P1IO = 0xF9;    	// direction
 	P1PU = 0x06;    	// pullup
 	P1 &= 0x87;
@@ -144,57 +144,57 @@ uint8  GetKeyVal(void)
 }
   
 
-/*                     ÏÂÃæ³ÌĞò¿ÉÒÆÖ²                    */
+/*                     ä¸‹é¢ç¨‹åºå¯ç§»æ¤                    */
 
 /*-----------------------------------------------------------------------------*
  *  Function Description:                                                      *
- *      É¨¼ü½ø³Ì,Á¬¼üÊ±¼ä=(100-95)*8+(100-0)*8+(100-85)*8*(n-2)                *
+ *      æ‰«é”®è¿›ç¨‹,è¿é”®æ—¶é—´=(100-95)*8+(100-0)*8+(100-85)*8*(n-2)                *
  *  Parameters:                                                                *
  *      None                                                                   *
  *  Return                                                                     *
  *      None                                                                   *
  *----------------------------------------------------------------------------*/
 Bool bNewKey_Menu,bKeyPress_Menu;
-uint16	g_u16KeyRpyCnt	=	0;		//Á¬¼ü´ÎÊı
-static	uint8	m_u8KeyAct	=	0;	//°´¼üÓĞĞ§¶¯×÷Öµ
-uint8 g_u8KeyUpAct = 0;             //°´¼üÌ§ÆğÓĞĞ§¶¯×÷Öµ
+uint16	g_u16KeyRpyCnt	=	0;		//è¿é”®æ¬¡æ•°
+static	uint8	m_u8KeyAct	=	0;	//æŒ‰é”®æœ‰æ•ˆåŠ¨ä½œå€¼
+uint8 g_u8KeyUpAct = 0;             //æŒ‰é”®æŠ¬èµ·æœ‰æ•ˆåŠ¨ä½œå€¼
 #define	KEY_START_TIME	95
 #define	KEY_RPY_TIME	85
 #define	KEY_END_TIME	100
 
-void	KeyProc(void)	//8msÖ´ĞĞÒ»´Î±¾³ÌĞò
+void	KeyProc(void)	//8msæ‰§è¡Œä¸€æ¬¡æœ¬ç¨‹åº
 {
 	static uint8	u8KeyPressCnt	=	0;
 	static uint8	u8PrevKey	=	0;
-	uint8	u8Key	=	GetKeyVal();	//»ñÈ¡¼üÖµ
+	uint8	u8Key	=	GetKeyVal();	//è·å–é”®å€¼
 
 	if(u8Key==u8PrevKey)
 	{
-		u8KeyPressCnt++; //·À¶¶¼ÆÊı±äÁ¿£¨Á¬°´¼ü¼ä¸ôÊ±¼ä±äÁ¿£©
+		u8KeyPressCnt++; //é˜²æŠ–è®¡æ•°å˜é‡ï¼ˆè¿æŒ‰é”®é—´éš”æ—¶é—´å˜é‡ï¼‰
 
 		if(u8KeyPressCnt>KEY_END_TIME)
 		{
-			m_u8KeyAct	=	u8PrevKey;	//×îÖÕÓĞĞ§¼üÖµm_u8KeyAct
+			m_u8KeyAct	=	u8PrevKey;	//æœ€ç»ˆæœ‰æ•ˆé”®å€¼m_u8KeyAct
 			
 			if(m_u8KeyAct==0)
 			{
-				bKeyPress	=	0;		//°´¼üÊÍ·Å
+				bKeyPress	=	0;		//æŒ‰é”®é‡Šæ”¾
 			}
 			else
 			{
-				bKeyPress	=	1;		//ÓĞ¼ü°´ÏÂ
+				bKeyPress	=	1;		//æœ‰é”®æŒ‰ä¸‹
 			}
 
             if(m_u8KeyAct&0x08)
             {
-                bKeyPress_Menu = 1;     //menu¼ü°´ÏÂ
+                bKeyPress_Menu = 1;     //menué”®æŒ‰ä¸‹
             }
             else
             {
-                bKeyPress_Menu = 0;    //menu¼üÊÍ·Å
+                bKeyPress_Menu = 0;    //menué”®é‡Šæ”¾
             }
 			
-			g_u16KeyRpyCnt++;		//Á¬¼ü´ÎÊı¼ÓÒ»
+			g_u16KeyRpyCnt++;		//è¿é”®æ¬¡æ•°åŠ ä¸€
 			if(bFirstPress)
 			{
 				u8KeyPressCnt	=	0;
@@ -219,7 +219,7 @@ void	KeyProc(void)	//8msÖ´ĞĞÒ»´Î±¾³ÌĞò
 	{ 
 		if(!bKeyPress)	
 		{
-			bNewKey		=	1;			//°´¼üÊÍ·Å²ÅÖÃĞÂ¼ü±êÖ¾
+			bNewKey		=	1;			//æŒ‰é”®é‡Šæ”¾æ‰ç½®æ–°é”®æ ‡å¿—
 		}
 		else
 		{
@@ -227,27 +227,27 @@ void	KeyProc(void)	//8msÖ´ĞĞÒ»´Î±¾³ÌĞò
 		}
         if((!bKeyPress_Menu)&&(u8Key&0x08))
         {
-            bNewKey_Menu = 1;           //menuĞÂ¼ü          
+            bNewKey_Menu = 1;           //menuæ–°é”®          
         }
         else
         {
             bNewKey_Menu = 0;
         }
-		m_u8KeyAct		=	0;      	//´Ë´¦²»Çåµô£¬»á³öÏÖËÉ¿ª¼ü²ÅÓĞ·´Ó¦
-		g_u16KeyRpyCnt	=	0;			//Á¬¼ü´ÎÊıÇåÁã
-		bFirstPress		=	1; 			//µÚÒ»´Î°´¼ü±êÖ¾£¬ÓÃÓÚÁ¬°´´¦Àí
-		u8PrevKey		=	u8Key; 		//prev_keyÎªÇ°Ò»´Î¼üÖµ
+		m_u8KeyAct		=	0;      	//æ­¤å¤„ä¸æ¸…æ‰ï¼Œä¼šå‡ºç°æ¾å¼€é”®æ‰æœ‰ååº”
+		g_u16KeyRpyCnt	=	0;			//è¿é”®æ¬¡æ•°æ¸…é›¶
+		bFirstPress		=	1; 			//ç¬¬ä¸€æ¬¡æŒ‰é”®æ ‡å¿—ï¼Œç”¨äºè¿æŒ‰å¤„ç†
+		u8PrevKey		=	u8Key; 		//prev_keyä¸ºå‰ä¸€æ¬¡é”®å€¼
 		u8KeyPressCnt	=	KEY_START_TIME;  
 	}
 }    
 
 /*-----------------------------------------------------------------------------*
  *  Function Description:                                                      *
- *      ¶ÁÈ¡¼üÖµ                                                      		   *
+ *      è¯»å–é”®å€¼                                                      		   *
  *  Parameters:                                                                *
  *      None                                                                   *
  *  Return                                                                     *
- *      ¾­¹ı´¦ÀíºóµÄ¼üÖµ                                                       *
+ *      ç»è¿‡å¤„ç†åçš„é”®å€¼                                                       *
  *----------------------------------------------------------------------------*/
 uint8	GetKey(void)
 {
@@ -258,11 +258,11 @@ uint8	GetKey(void)
 
 /*-----------------------------------------------------------------------------*
  *  Function Description:                                                      *
- *      ÅĞ¶ÏÊÇ·ñ°´ÏÂĞÂ¼ü                                                       *
+ *      åˆ¤æ–­æ˜¯å¦æŒ‰ä¸‹æ–°é”®                                                       *
  *  Parameters:                                                                *
  *      None                                                                   *
  *  Return                                                                     *
- *      ÅĞ¶Ï½á¹û                                                        	   *
+ *      åˆ¤æ–­ç»“æœ                                                        	   *
  *----------------------------------------------------------------------------*/
 uint8	IsNewKey(void)
 {

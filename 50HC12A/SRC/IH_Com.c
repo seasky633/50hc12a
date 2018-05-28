@@ -7,7 +7,7 @@
 /*-----------------------------*
  *  Macros for constants       *
  *----------------------------*/
-//********Í¨ĞÅ¶Ë¿Ú¶¨Òå***********
+//********é€šä¿¡ç«¯å£å®šä¹‰***********
 #define SDA_I   P0IO&= 0xfb
 #define SDA_O	P0IO|= 0x04
 #define SDA 	P02
@@ -30,10 +30,10 @@ void CHK_IH_Com_Set(void);
 /*-----------------------------*
  *  public variable declaration*
  *----------------------------*/
-uint8 idata ClockCount; 	    //Ê±ÖÓ¼ÆÊıÆ÷
-uint8 idata WriteDataSum;	    //²Ù×÷Êı¾İ×ÜÊı
-uint8 idata ReadDataSum;	    //²Ù×÷Êı¾İ×ÜÊı
-uint8 idata DelayTime;  		//ÑÓÊ±Ê±¼ä
+uint8 idata ClockCount; 	    //æ—¶é’Ÿè®¡æ•°å™¨
+uint8 idata WriteDataSum;	    //æ“ä½œæ•°æ®æ€»æ•°
+uint8 idata ReadDataSum;	    //æ“ä½œæ•°æ®æ€»æ•°
+uint8 idata DelayTime;  		//å»¶æ—¶æ—¶é—´
 uint8 idata BitCount;
 uint8 idata IICData;
 uint8 idata ComStep;
@@ -45,23 +45,23 @@ uint8 idata ReadDataBuf[12];
 
 uint8 idata WriteInitDataBuf[8] = 
 {
-#define		C_INIT_LOAD_CUR		4		    //µçÁ÷
+#define		C_INIT_LOAD_CUR		4		    //ç”µæµ
 #define     C_AB			    0
-#define		C_COM_LOAD_TEST 	0x1B		//¼ì¹øÇ¿¶È
-#define		C_COM_MAX_PPG		0xd0		//×î´óÏŞÖÆPPG		
-#define		C_COM_LOAD_LEAVE	500/25		//ÒÆ¹ø¹¦ÂÊÉÏÏŞ ¸ºÔØÒÆ³ö¼ì²â¹¦ÂÊÃ÷Âë/25
-#define		C_COM_LOAD_PAN		0           //1600/25			//¶ñÁÓ¹ø¾ß±£»¤ ¶ñÁÓ¸ºÔØ±£»¤¹¦ÂÊÃ÷Âë/25 0²»±£»¤
-#define		C_COM_LOAD_CUR 		((C_INIT_LOAD_CUR*210)/25)	//È·¶¨ÓĞ¹øµçÁ÷(×îµÍÔÊĞí¹¤×÷µçÑ¹ÏÂ×î´óPPGÊ±£¬¸ºÔØÓĞĞ§µçÁ÷Ã÷Âë¹¦ÂÊÉèÖÃÖµX£¬X=I*210/25
-#define		C_COM_MINPOWERM		600/25	    //×îĞ¡¹¤×÷¹¦ÂÊÃ÷Âë
-#define		C_COM_MAXPOWERM		1600/25     //×î´ó¹¤×÷¹¦ÂÊÃ÷Âë
-	C_COM_LOAD_TEST,	//¸ºÔØ¼ì²â²ÎÊı:¼ì¹øÇ¿¶È
-	C_COM_MAX_PPG,		//×î´óÏŞÖÆPPG 
-	C_COM_LOAD_LEAVE,	//¸ºÔØÒÆ³ö¼ì²â¹¦ÂÊÃ÷ÂëÉèÖÃÖµ
-	C_COM_LOAD_PAN,		//¶ñÁÓ¸ºÔØ±£»¤¹¦ÂÊÃ÷ÂëÉèÖÃÖµ
-	C_COM_LOAD_CUR,		//¸ºÔØÓĞĞ§µçÁ÷
-	C_AB,		        //µçÁ÷ĞŞÕıÏµÊı
-	C_COM_MINPOWERM,	//×îĞ¡¹¤×÷¹¦ÂÊÃ÷ÂëÉèÖÃÖµ
-	C_COM_MAXPOWERM,	//×î´ó¹¤×÷¹¦ÂÊÃ÷ÂëÉèÖÃÖµ
+#define		C_COM_LOAD_TEST 	0x1B		//æ£€é”…å¼ºåº¦
+#define		C_COM_MAX_PPG		0xd0		//æœ€å¤§é™åˆ¶PPG		
+#define		C_COM_LOAD_LEAVE	500/25		//ç§»é”…åŠŸç‡ä¸Šé™ è´Ÿè½½ç§»å‡ºæ£€æµ‹åŠŸç‡æ˜ç /25
+#define		C_COM_LOAD_PAN		0           //1600/25			//æ¶åŠ£é”…å…·ä¿æŠ¤ æ¶åŠ£è´Ÿè½½ä¿æŠ¤åŠŸç‡æ˜ç /25 0ä¸ä¿æŠ¤
+#define		C_COM_LOAD_CUR 		((C_INIT_LOAD_CUR*210)/25)	//ç¡®å®šæœ‰é”…ç”µæµ(æœ€ä½å…è®¸å·¥ä½œç”µå‹ä¸‹æœ€å¤§PPGæ—¶ï¼Œè´Ÿè½½æœ‰æ•ˆç”µæµæ˜ç åŠŸç‡è®¾ç½®å€¼Xï¼ŒX=I*210/25
+#define		C_COM_MINPOWERM		600/25	    //æœ€å°å·¥ä½œåŠŸç‡æ˜ç 
+#define		C_COM_MAXPOWERM		1600/25     //æœ€å¤§å·¥ä½œåŠŸç‡æ˜ç 
+	C_COM_LOAD_TEST,	//è´Ÿè½½æ£€æµ‹å‚æ•°:æ£€é”…å¼ºåº¦
+	C_COM_MAX_PPG,		//æœ€å¤§é™åˆ¶PPG 
+	C_COM_LOAD_LEAVE,	//è´Ÿè½½ç§»å‡ºæ£€æµ‹åŠŸç‡æ˜ç è®¾ç½®å€¼
+	C_COM_LOAD_PAN,		//æ¶åŠ£è´Ÿè½½ä¿æŠ¤åŠŸç‡æ˜ç è®¾ç½®å€¼
+	C_COM_LOAD_CUR,		//è´Ÿè½½æœ‰æ•ˆç”µæµ
+	C_AB,		        //ç”µæµä¿®æ­£ç³»æ•°
+	C_COM_MINPOWERM,	//æœ€å°å·¥ä½œåŠŸç‡æ˜ç è®¾ç½®å€¼
+	C_COM_MAXPOWERM,	//æœ€å¤§å·¥ä½œåŠŸç‡æ˜ç è®¾ç½®å€¼
 };
 uint8 idata WriteRunDataBuf[4];
 
@@ -77,7 +77,7 @@ bit FANcon;
 
 /*-----------------------------------------------------------------------------*
  *  Function Description:                                                      *
- *      IICÍ¨ĞÅ³ÌĞò--Æô¶¯ĞÅºÅ                                                  * 
+ *      IICé€šä¿¡ç¨‹åº--å¯åŠ¨ä¿¡å·                                                  * 
  *  Parameters:                                                                *
  *      None                                                                   *
  *  Return                                                                     *
@@ -109,7 +109,7 @@ bit IICStart(void)
 
 /*-----------------------------------------------------------------------------*
  *  Function Description:                                                      *
- *      IICÍ¨ĞÅ³ÌĞò--Í£Ö¹ĞÅºÅ                                                  * 
+ *      IICé€šä¿¡ç¨‹åº--åœæ­¢ä¿¡å·                                                  * 
  *  Parameters:                                                                *
  *      None                                                                   *
  *  Return                                                                     *
@@ -140,7 +140,7 @@ bit IICStop(void)
 
 /*-----------------------------------------------------------------------------*
  *  Function Description:                                                      *
- *      IICÍ¨ĞÅ³ÌĞò--Ğ´8Î»Êı¾İ                                                 * 
+ *      IICé€šä¿¡ç¨‹åº--å†™8ä½æ•°æ®                                                 * 
  *  Parameters:                                                                *
  *      None                                                                   *
  *  Return                                                                     *
@@ -213,7 +213,7 @@ bit Data8bitWrite(uint8 datatemp)
 
 /*-----------------------------------------------------------------------------*
  *  Function Description:                                                      *
- *      IICÍ¨ĞÅ³ÌĞò--¶Á8Î»Êı¾İ                                                 * 
+ *      IICé€šä¿¡ç¨‹åº--è¯»8ä½æ•°æ®                                                 * 
  *  Parameters:                                                                *
  *      None                                                                   *
  *  Return                                                                     *
@@ -279,7 +279,7 @@ bit Data8bitRead(bit acktempflag)
 
 /*-----------------------------------------------------------------------------*
  *  Function Description:                                                      *
- *      Êı¾İÍ¨Ñ¶Ö÷³ÌĞò                                                         * 
+ *      æ•°æ®é€šè®¯ä¸»ç¨‹åº                                                         * 
  *  Parameters:                                                                *
  *      None                                                                   *
  *  Return                                                                     *
@@ -294,7 +294,7 @@ void CHK_IH_Connector(void)
 		DelayTime = 0;
 		if(WriteFlag)
 		{
-			if(ComStep == 0)  				//Æô¶¯
+			if(ComStep == 0)  				//å¯åŠ¨
 			{
 				if(IICStart())
 				{
@@ -305,7 +305,7 @@ void CHK_IH_Connector(void)
 					DelayTime = 3;
 				}
 			}
-			else if(ComStep == 1)  		//Òıµ¼×Ö
+			else if(ComStep == 1)  		//å¼•å¯¼å­—
 			{
 				if(Data8bitWrite(0x50))
 				{
@@ -315,11 +315,11 @@ void CHK_IH_Connector(void)
 					CLK_Flag = 1;
 				}
 			}
-			else if(ComStep == 2)  		//ÃüÁî×Ö
+			else if(ComStep == 2)  		//å‘½ä»¤å­—
 			{
 				if(InitFlag)
 				{
-					if(Data8bitWrite(0x00))	 //³õÊ¼»¯ÃüÁî
+					if(Data8bitWrite(0x00))	 //åˆå§‹åŒ–å‘½ä»¤
 					{
 						ComStep++;
 						BitCount = 0;
@@ -330,7 +330,7 @@ void CHK_IH_Connector(void)
 				}
 				else
 				{
-					if(Data8bitWrite(0x10))  //·¢ËÍ¹¦ÂÊ¿ØÖÆĞÅÏ¢
+					if(Data8bitWrite(0x10))  //å‘é€åŠŸç‡æ§åˆ¶ä¿¡æ¯
 					{
 						ComStep++;
 						BitCount = 0;
@@ -340,7 +340,7 @@ void CHK_IH_Connector(void)
 					}
 				}
 			}
-			else if(ComStep == 3)  			//Êı¾İÇø
+			else if(ComStep == 3)  			//æ•°æ®åŒº
 			{
 				if(InitFlag)
 				{
@@ -372,7 +372,7 @@ void CHK_IH_Connector(void)
 					}
 				}
 			}
-			else if(ComStep == 4)  			//½áÊø
+			else if(ComStep == 4)  			//ç»“æŸ
 			{
 				if(IICStop())
 				{
@@ -388,7 +388,7 @@ void CHK_IH_Connector(void)
 		{
 			if(ComStep == 0)
 			{
-				if(IICStart())						//¿ªÊ¼
+				if(IICStart())						//å¼€å§‹
 				{
 					ComStep++;
 					BitCount = 0;
@@ -397,7 +397,7 @@ void CHK_IH_Connector(void)
 					DelayTime = 10;
 				}
 			}
-			else if(ComStep == 1)  			//Òıµ¼×Ö
+			else if(ComStep == 1)  			//å¼•å¯¼å­—
 			{
 				if(Data8bitWrite(0x50))
 				{
@@ -407,7 +407,7 @@ void CHK_IH_Connector(void)
 					TempFlag = 1;
 				}
 			}
-			else if(ComStep == 2)				//ÃüÁî×Ö
+			else if(ComStep == 2)				//å‘½ä»¤å­—
 			{
 				if(Data8bitWrite(0x10))
 				{
@@ -417,7 +417,7 @@ void CHK_IH_Connector(void)
 					TempFlag = 1;
 				}
 			} 
-			else if(ComStep == 3)  			//½áÊø
+			else if(ComStep == 3)  			//ç»“æŸ
 			{
 				if(IICStop())
 				{
@@ -425,10 +425,10 @@ void CHK_IH_Connector(void)
 					BitCount = 0;
 					TempFlag = 1;
 					CLK_Flag = 1;
-					DelayTime = 100;	 			//µÈ´ı50¸öÖĞ¶ÏÖÜÆÚ
+					DelayTime = 100;	 			//ç­‰å¾…50ä¸ªä¸­æ–­å‘¨æœŸ
 				}
 			}
-			else if(ComStep == 4)  			//ÖØÆô
+			else if(ComStep == 4)  			//é‡å¯
 			{
 				if(IICStart())
 				{
@@ -439,9 +439,9 @@ void CHK_IH_Connector(void)
 					DelayTime = 10;
 				}
 			}
-			else if(ComStep == 5)  			//Òıµ¼×Ö
+			else if(ComStep == 5)  			//å¼•å¯¼å­—
 			{
-				if(Data8bitWrite(0x51))		//¶ÁÈ¡
+				if(Data8bitWrite(0x51))		//è¯»å–
 				{
 					ComStep++;
 					BitCount = 0;
@@ -450,7 +450,7 @@ void CHK_IH_Connector(void)
 					DataCount = 0;
 				}
 			}
-			else if(ComStep == 6)  			//¶ÁÈ¡Êı¾İ
+			else if(ComStep == 6)  			//è¯»å–æ•°æ®
 			{
 				if(DataCount<10)
 				{
@@ -472,14 +472,14 @@ void CHK_IH_Connector(void)
 					TempFlag = 1;
 				}
 			}
-			else if(ComStep == 7)  			//½áÊø
+			else if(ComStep == 7)  			//ç»“æŸ
 			{
 				if(IICStop())
 				{
 					ComStep = 0;
 					BitCount = 0;
 					TempFlag = 1;
-					DelayTime = 100;	  		//µÈ´ı50¸öÖĞ¶ÏÖÜÆÚ
+					DelayTime = 100;	  		//ç­‰å¾…50ä¸ªä¸­æ–­å‘¨æœŸ
 					ReadFlag = 0;
 				}
 			}
@@ -500,7 +500,7 @@ void CHK_IH_Connector(void)
 
 /*-----------------------------------------------------------------------------*
  *  Function Description:                                                      *
- *      IHÊı¾İÉèÖÃ³ÌĞò                                                         * 
+ *      IHæ•°æ®è®¾ç½®ç¨‹åº                                                         * 
  *  Parameters:                                                                *
  *      None                                                                   *
  *  Return                                                                     *
@@ -512,9 +512,9 @@ void CHK_IH_Com_Set(void)
 	if((bCookBySctEN==1)||(m_u8SysID==SYS_ID_WARM))
 	{
 		FANcon = 1;
-        if(bHeatState==0)                   //IH·Ç¼ÓÈÈ×´Ì¬
+        if(bHeatState==0)                   //IHéåŠ çƒ­çŠ¶æ€
         {
-            if(m_u8SysID==SYS_ID_WARM)      //±£ÎÂ£¬¹Ø·çÉÈ
+            if(m_u8SysID==SYS_ID_WARM)      //ä¿æ¸©ï¼Œå…³é£æ‰‡
             {
                 FANcon = 0;
             }
@@ -522,13 +522,13 @@ void CHK_IH_Com_Set(void)
             if((m_u8CookMode==FUNC_ID_BAKE)||(m_u8CookMode==FUNC_ID_STEW)||(m_u8CookMode==FUNC_ID_FRY)
     	    ||(m_u8CookMode==FUNC_ID_SOUP)||(m_u8CookMode==FUNC_ID_CHEESE)||((m_u8DIYMode>0)&&(m_u8CookMode==0)))
     	    {
-    	        if(u8CookTemp<160)  //160¶ÈÒÔÏÂ¹Ø·çÉÈ£¬160¶ÈÒ»Ö±¿ª·çÉÈ
+    	        if(u8CookTemp<160)  //160åº¦ä»¥ä¸‹å…³é£æ‰‡ï¼Œ160åº¦ä¸€ç›´å¼€é£æ‰‡
                 {
                     FANcon = 0;
                 }
             }
            
-            if((m_u8CookMode==FUNC_ID_YOGHURT)||(m_u8CookMode==FUNC_ID_DOUGH)) //yoghurt/dough¹¦ÄÜ,¹Ø·çÉÈ
+            if((m_u8CookMode==FUNC_ID_YOGHURT)||(m_u8CookMode==FUNC_ID_DOUGH)) //yoghurt/doughåŠŸèƒ½,å…³é£æ‰‡
             {
                 FANcon = 0;
             }
@@ -548,7 +548,7 @@ void CHK_IH_Com_Set(void)
 	    InitFlag = 1;
 	}
 
-	if(FANcon&TopHeatOUT)	    //·çÉÈ¿ØÖÆÓë¶¥²¿¼ÓÈÈ
+	if(FANcon&TopHeatOUT)	    //é£æ‰‡æ§åˆ¶ä¸é¡¶éƒ¨åŠ çƒ­
 	{
 		POwerIO = Bin(10010110);//0xa6;		
 	}
@@ -571,12 +571,12 @@ void CHK_IH_Com_Set(void)
         g_u8BuzMode = 0;
     }  
 	
-	ControlSet = (ControlSet&0xfc)+(BZcon&0x03); //·äÃùÆ÷
+	ControlSet = (ControlSet&0xfc)+(BZcon&0x03); //èœ‚é¸£å™¨
 	temp = 	(~ControlSet)<<4;
 	ControlSet = (ControlSet&0x0f)+ (temp&0xf0);
 
 	
-	PowerSetL = 0x13;	//¹¦ÂÊÊä³ö¿ª¹Ø£¬0Í£Ö¹¼ÓÈÈ£¬·Ç0£¬¼ÓÈÈ
+	PowerSetL = 0x13;	//åŠŸç‡è¾“å‡ºå¼€å…³ï¼Œ0åœæ­¢åŠ çƒ­ï¼Œé0ï¼ŒåŠ çƒ­
 
     if((bCookBySctEN==1)||(m_u8SysID==SYS_ID_WARM)||(m_u8SysID==SYS_ID_CHECK))
     {
@@ -587,7 +587,7 @@ void CHK_IH_Com_Set(void)
 		        power_value=46;
 	        }
 
-            POwerSetH = power_value;     //¹¦ÂÊµ÷Õû£¬Êµ¼Ê¹¦ÂÊ/25
+            POwerSetH = power_value;     //åŠŸç‡è°ƒæ•´ï¼Œå®é™…åŠŸç‡/25
         }
         else
         {
@@ -599,12 +599,12 @@ void CHK_IH_Com_Set(void)
         POwerSetH = 0;
     }
         
-    if((g_u8ErrorType>0)||(bHeatState==0))      //ÓĞ±¨¾¯£¬²»¼ÓÈÈ
+    if((g_u8ErrorType>0)||(bHeatState==0))      //æœ‰æŠ¥è­¦ï¼Œä¸åŠ çƒ­
 	{
 	    POwerSetH = 0;
     }
 	
-	if((bNoPanErr==1)&&(bPanOverTempErr==0))   //ÎŞ¹ø(ÇÒÎŞ¸ßÎÂ±¨¾¯)Ê±Ç¿ÖÆ¼ÓÈÈ
+	if((bNoPanErr==1)&&(bPanOverTempErr==0))   //æ— é”…(ä¸”æ— é«˜æ¸©æŠ¥è­¦)æ—¶å¼ºåˆ¶åŠ çƒ­
     {
         POwerSetH = power_value;
     }

@@ -40,7 +40,7 @@ uint8 xdata m_u8OnTime = 0;
 uint8 xdata m_u8OffTime = 0;
 uint8 xdata g_u8BuzMode = 0;            //0:over 1:100ms 2:300ms  3:800ms
 uint8 code *m_u8pMusic = NULL;
-uint8 code *m_u8pMusicBak = NULL;		//±¸·İÖ¸Õë£¬ÓÃÓÚÖØ¸´²¥·Å
+uint8 code *m_u8pMusicBak = NULL;		//å¤‡ä»½æŒ‡é’ˆï¼Œç”¨äºé‡å¤æ’­æ”¾
 
 uint16	code MetroTable[] =
 {
@@ -96,9 +96,9 @@ uint8 code MusicCancelFunc[] =
 
 /*-----------------------------------------------------------------------------*
  *  Function Description:                                                      *
- *      ÉùÒô²¥·Åº¯Êı                                                           *
+ *      å£°éŸ³æ’­æ”¾å‡½æ•°                                                           *
  *  Parameters:                                                                *
- *      ÉùÒôÊı¾İÊ×µØÖ·                                                         *
+ *      å£°éŸ³æ•°æ®é¦–åœ°å€                                                         *
  *  Return                                                                     *
  *      None                                                                   *
  *----------------------------------------------------------------------------*/
@@ -113,7 +113,7 @@ void	PlaySound(uint8	code	*pMusic)
 
 /*-----------------------------------------------------------------------------*
  *  Function Description:                                                      *
- *      ÉùÒô´¦Àí½ø³Ì                                                           *
+ *      å£°éŸ³å¤„ç†è¿›ç¨‹                                                           *
  *  Parameters:                                                                *
  *      None                                                                   *
  *  Return                                                                     *
@@ -135,18 +135,18 @@ void	SoundProc(void)
 			m_u8OffTime--;
 			if(m_u8OffTime==0)
 			{    
-				//È¡Òô·ûÆµÂÊ,ºÍ½ÚÅÄ
+				//å–éŸ³ç¬¦é¢‘ç‡,å’ŒèŠ‚æ‹
 				u8Tmp =	*m_u8pMusic;
 				if(u8Tmp==0x00)
 				{ 	
-					//ÒôÀÖ½áÊø
+					//éŸ³ä¹ç»“æŸ
 			   		return;			
 				}
 				else	
 				{
 					if(u8Tmp==0xff)
 					{     
-						//ÒôÀÖÑ­»·
+						//éŸ³ä¹å¾ªç¯
 			    		m_u8pMusic  =   m_u8pMusicBak;
                		    m_u8OnTime	=	0;
 	            		m_u8OffTime	=	1;
@@ -154,19 +154,19 @@ void	SoundProc(void)
 						return;
              		}
 	
-					u8Tmp		&=	0x0f;				  //Ç°4Î»Îª´ò¿ªÊ±¼ä
+					u8Tmp		&=	0x0f;				  //å‰4ä½ä¸ºæ‰“å¼€æ—¶é—´
 					g_u8BuzMode =   u8Tmp;
 					m_u8OnTime	=	MetroTable[u8Tmp];
 
             		u8Tmp		=	*m_u8pMusic++;
-					u8Tmp		=	(u8Tmp>>4)&0x0f;      //ºó4Î»Îª¹Ø±ÕÊ±¼ä
+					u8Tmp		=	(u8Tmp>>4)&0x0f;      //å4ä½ä¸ºå…³é—­æ—¶é—´
 					m_u8OffTime	=	MetroTable[u8Tmp];
 					
 //					P3OD  = 0x00;       // open drain
-//					P3FSR |= 0x20;		// ÉèÎªPWM0O
+//					P3FSR |= 0x20;		// è®¾ä¸ºPWM0O
 //					T0CR = 0x94;    	// stop & PWM setting
 //					T0DR = 0x7F;    	// period count
-//					T0CR |= 0x01;   	// Æô¶¯·äÃùÆ÷
+//					T0CR |= 0x01;   	// å¯åŠ¨èœ‚é¸£å™¨
 				}
 			}
 		}
